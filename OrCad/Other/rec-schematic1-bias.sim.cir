@@ -1,0 +1,18 @@
+** Profile: "SCHEMATIC1-Bias"  [ D:\Radio\Devices\PS3608L\OrCad\rec-schematic1-bias.sim ] 
+
+** Creating circuit file "rec-schematic1-bias.sim.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Local Libraries :
+.LIB "C:\ProgramFiles\Orcad\Capture\Library\PSpice\OPAMP.OLB" 
+.LIB "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib" 
+* From [PSPICE NETLIST] section of c:\programfiles\Orcad\PSpice\PSpice.ini file:
+
+*Analysis directives: 
+.TRAN  0 1000ms 0 
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+.INC ".\rec-SCHEMATIC1.net" 
+
+
+.END

@@ -1,0 +1,124 @@
+(ExpressProject "rec"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File "C:\ProgramFiles\Orcad\Capture\library\pspice\breakout.olb"
+        (Type "Schematic Library"))
+      (File "C:\ProgramFiles\Orcad\Capture\library\pspice\analog.olb"
+        (Type "Schematic Library"))
+      (File "C:\ProgramFiles\Orcad\Capture\library\pspice\source.olb"
+        (Type "Schematic Library"))
+      (File "C:\ProgramFiles\Orcad\Capture\library\pspice\sourcstm.olb"
+        (Type "Schematic Library"))
+      (File "C:\ProgramFiles\Orcad\Capture\library\pspice\special.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\rec.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (ANNOTATE_Scope "0")
+    (ANNOTATE_Mode "1")
+    (ANNOTATE_Action "1")
+    (ANNOTATE_Reset_References_to_1 "FALSE")
+    (ANNOTATE_No_Page_Number_Change "TRUE")
+    (ANNOTATE_Property_Combine "{Value}{Source Package}")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Outputs"
+    (File ".\rec-schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\rec-schematic1-bias.sim"
+        (DisplayName "SCHEMATIC1-Bias")
+        (Type "PSpice Profile"))
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\rec-schematic1-rep.sim"
+        (DisplayName "SCHEMATIC1-rep")
+        (Type "PSpice Profile"))
+      (ActiveProfile ".\rec-schematic1-bias.sim"))
+    (Folder "Stimulus Files")
+    (Folder "Include Files")
+    (Folder "Model Libraries"
+      (File "C:\ProgramFiles\Orcad\Capture\Library\PSpice\OPAMP.OLB"
+        (DisplayName "C:\ProgramFiles\Orcad\Capture\Library\PSpice\OPAMP.OLB")
+        (Type "PSpiceLibrary"))
+      (File "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib"
+        (DisplayName "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib")
+        (Type "PSpiceLibrary"))
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (RESISTOR
+      (FullPartName "RESISTOR.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VSIN
+      (FullPartName "VSIN.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (RESISTOR SIP 6 HE
+      (FullPartName "RESISTOR SIP 6 HEA.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0"))
+    (TRAN_ISDN_10
+      (FullPartName "TRAN_ISDN_10.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0"))
+    (PORTBOTH-L
+      (LibraryName "..\..\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (PORTBOTH-R
+      (LibraryName "..\..\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (C
+      (FullPartName "C.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (L
+      (FullPartName "L.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (VSTIM
+      (FullPartName "VSTIM.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\SOURCSTM.OLB")
+      (DeviceIndex "0"))
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0")))
+  (LastUsedLibraryBrowseDirectory "LIBRARY\PSPICE")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" ".\rec.dsn")
+      (Path "Design Resources" ".\rec.dsn" "SCHEMATIC1")
+      (Path "Design Resources" "Library")
+      (Path "Outputs")
+      (Path "PSpice Resources")
+      (Select "Outputs" ".\rec-schematic1.net"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -30 0 363 0 606"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 464 1323 13 639")
+        (Scroll "0 0")
+        (Zoom "200")
+        (Occurrence "/"))
+      (Path "D:\RADIO\DEVICES\PS3608L\ORCAD\REC.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))

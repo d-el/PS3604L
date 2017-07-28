@@ -1,0 +1,237 @@
+
+**** 09/29/16 20:01:23 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\CulerReg2.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.2
+* Tue Aug 09 01:20:36 2016
+
+
+
+** Analysis setup **
+.tran 20ns 30ms
+
+
+* From [PSPICE NETLIST] section of c:\programfiles\Orcad\PSpice\PSpice.ini:
+.lib "nom.lib"
+
+.INC "CulerReg2.net"
+
+
+
+**** INCLUDING CulerReg2.net ****
+* Schematics Netlist *
+
+
+
+V_V1         +12V 0 12V
+C_C3         +12V 0  10u  
+X_U1         $N_0001 $N_0002 +12V 0 $N_0003 LMC7101A/NS
+M_M2         $N_0004 $N_0003 +12V +12V IRFP9140
+R_R24         $N_0004 0  100  
+R_R12         $N_0004 $N_0001  33k  
+R_R13         0 $N_0001  10k  
+C_C10         $N_0004 0  47u  
+V_V21         $N_0005 0 2V
+X_S5    $N_0006 $N_0005 $N_0007 0 CulerReg2_S5 
+V_V22         $N_0006 0  
++PULSE 0 5 0us 5us 5us 5ms 10ms
+C_C7         $N_0001 $N_0004  100p  
+R_R27         $N_0004 $N_0007  20  
+V_V20         $N_0002 0 2V
+
+.subckt CulerReg2_S5 1 2 3 4  
+S_S5         3 4 1 2 Sbreak
+RS_S5         1 2 1G
+.ends CulerReg2_S5
+
+**** RESUMING CulerReg2.cir ****
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+
+
+.END
+
+**** 09/29/16 20:01:23 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\CulerReg2.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.DA         X_U1.DB         X_U1.DC         X_U1.DX         
+          IS   13.000000E-12   12.000000E-12   10.000000E-12   10.000000E-15 
+
+
+**** 09/29/16 20:01:23 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\CulerReg2.sch
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               IRFP9140        X_U1.MOSFET     
+               PMOS            PMOS            
+       LEVEL    3               1            
+           L    2.000000E-06  100.000000E-06 
+           W    1.3           100.000000E-06 
+         VTO   -3.157           0            
+          KP   10.750000E-06    1.842000E-03 
+       GAMMA    0               0            
+         PHI     .6              .6          
+      LAMBDA    0               0            
+          RD     .07735                      
+          RS     .04004                      
+          RG    5.183                        
+         RDS  444.400000E+03                 
+          IS    4.318000E-12   10.000000E-15 
+          JS    0               0            
+          PB     .8              .8          
+        PBSW     .8              .8          
+         CBD    2.293000E-09                 
+          CJ    0               0            
+        CJSW    0               0            
+          TT  132.000000E-09                 
+        CGSO    1.038000E-09    0            
+        CGDO  291.900000E-12    0            
+        CGBO    0               0            
+         TOX  100.000000E-09    0            
+          XJ    0               0            
+          UO  300                            
+       UCRIT   10.000000E+03   10.000000E+03 
+       DELTA    0                            
+         ETA    0                            
+      DIOMOD    1               1            
+         VFB    0               0            
+        LETA    0               0            
+        WETA    0               0            
+          U0    0               0            
+        TEMP    0               0            
+         VDD    0               0            
+       XPART    0               0            
+
+
+**** 09/29/16 20:01:23 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\CulerReg2.sch
+
+
+ ****     Voltage Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Sbreak          
+         RON    1            
+        ROFF    1.000000E+06 
+         VON    1            
+        VOFF    0            
+
+
+**** 09/29/16 20:01:23 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\CulerReg2.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+( +12V)   12.0000  (X_U1.4)    2.0961 (X_U1.5)     .0480 (X_U1.6)     .0480     
+
+(X_U1.7)    2.0000 (X_U1.8)   10.4400 (X_U1.9)    5.9999 ($N_0001)    1.9962    
+
+($N_0002)    2.0000                   ($N_0003)    8.6826                       
+
+($N_0004)    8.5838                   ($N_0005)    2.0000                       
+
+($N_0006)    0.0000                   ($N_0007)    8.5836                       
+
+(X_U1.10)    1.5600                   (X_U1.15)    5.9999                       
+
+(X_U1.16)    5.9998                   (X_U1.17)    6.0000                       
+
+(X_U1.18)    5.9999                   (X_U1.19)    6.0000                       
+
+(X_U1.29)    5.9327                   (X_U1.30)    9.4488                       
+
+(X_U1.31)    7.9088                   (X_U1.35)   12.1600                       
+
+(X_U1.36)   12.0000                   (X_U1.37)    6.0000                       
+
+(X_U1.38)    6.0000                   (X_U1.39)    8.6788                       
+
+(X_U1.40)    8.6788                   (X_U1.49)    6.0000                       
+
+(X_U1.96)    0.0000                   (X_U1.97)   12.0000                       
+
+(X_U1.98)    6.0000                   (X_U1.115)    8.6788                      
+
+(X_U1.120)   11.2830                  (X_U1.121)    6.0826                      
+
+(X_U1.123)    8.6788                  (X_U1.124)    8.7062                      
+
+(X_U1.125)    8.6590                  (X_U1.126)    9.3126                      
+
+(X_U1.127)    8.0526                  (X_U1.129)   11.2830                      
+
+(X_U1.130)    6.0826                  
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -8.663E-02
+    V_V21       -2.002E-09
+    V_V22        2.002E-09
+    V_V20        1.000E-11
+    X_U1.V2      4.517E-12
+    X_U1.V3      4.383E-12
+    X_U1.VA7    -1.701E-13
+    X_U1.VA8     5.358E-12
+    X_U1.VN7    -1.522E-04
+    X_U1.VN6    -1.522E-04
+    X_U1.VN4    -2.614E-12
+    X_U1.VN5    -2.606E-12
+    X_U1.V4      2.561E-12
+    X_U1.V5      7.919E-12
+
+    TOTAL POWER DISSIPATION   1.04E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .34
+

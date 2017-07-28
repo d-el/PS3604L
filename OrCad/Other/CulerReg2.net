@@ -1,0 +1,24 @@
+* Schematics Netlist *
+
+
+
+V_V1         +12V 0 12V
+C_C3         +12V 0  10u  
+X_U1         $N_0001 $N_0002 +12V 0 $N_0003 LMC7101A/NS
+M_M2         $N_0004 $N_0003 +12V +12V IRFP9140
+R_R24         $N_0004 0  100  
+R_R12         $N_0004 $N_0001  33k  
+R_R13         0 $N_0001  10k  
+C_C10         $N_0004 0  47u  
+V_V21         $N_0005 0 2V
+X_S5    $N_0006 $N_0005 $N_0007 0 CulerReg2_S5 
+V_V22         $N_0006 0  
++PULSE 0 5 0us 5us 5us 5ms 10ms
+C_C7         $N_0001 $N_0004  100p  
+R_R27         $N_0004 $N_0007  20  
+V_V20         $N_0002 0 2V
+
+.subckt CulerReg2_S5 1 2 3 4  
+S_S5         3 4 1 2 Sbreak
+RS_S5         1 2 1G
+.ends CulerReg2_S5

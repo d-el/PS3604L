@@ -1,0 +1,312 @@
+
+**** 09/29/16 20:36:20 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\Rectifier.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.2
+* Thu Sep 29 20:36:16 2016
+
+
+
+** Analysis setup **
+.tran 20n 30m
+
+
+* From [PSPICE NETLIST] section of c:\programfiles\Orcad\PSpice\PSpice.ini:
+.lib "nom.lib"
+
+.INC "Rectifier.net"
+
+
+
+**** INCLUDING Rectifier.net ****
+* Schematics Netlist *
+
+
+
+V_V1         $N_0001 0  
++SIN 0 14.1V 1000 0 0 0
+R_R2         $N_0002 0  20  
+X_D2         $N_0001 $N_0002 D120NQ045 
+R_R3         $N_0002 $N_0003  47k  
+V_V2         $N_0004 0 20V
+R_R4         $N_0006 $N_0005  47k  
+R_R1         $N_0006 0  20  
+C_C2         $N_0006 0  4700u  
+M_M3         $N_0002 $N_0007 $N_0006 $N_0006 IRFP9140
+X_U1A         $N_0005 $N_0003 $N_0004 0 $N_0007 LM358
+
+**** RESUMING Rectifier.cir ****
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+
+
+.END
+
+**** 09/29/16 20:36:20 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\Rectifier.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_D2.DFWD       X_D2.DLEAK      
+          IS   11.137170E-06  186.070200E-12 
+           N     .520057       99.2231       
+         ISR  225.763900E-12                 
+         IKF  184.112000E-06                 
+          BV   44.905         100.000000E+03 
+         IBV    2.586700E-03    1.000000E-03 
+          RS    1.020740E-03     .1          
+         CJO   11.509000E-09                 
+          VJ     .75                         
+           M     .49488                      
+          EG     .69             .69         
+         XTI    2               2            
+
+
+               X_U1A.x_lm358.dx 
+          IS  800.000000E-18 
+          RS    1            
+
+
+               X_U1A.x_lm358.dy 
+          IS  800.000000E-18 
+          RS    1.000000E-03 
+         CJO   10.000000E-12 
+
+
+**** 09/29/16 20:36:20 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\Rectifier.sch
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1A.x_lm358.qx 
+               PNP             
+          IS  800.000000E-18 
+          BF  166.7          
+          NF    1            
+          BR    1            
+          NR    1            
+          CN    2.2          
+           D     .52         
+
+
+**** 09/29/16 20:36:20 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\Rectifier.sch
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               IRFP9140        
+               PMOS            
+       LEVEL    3            
+           L    2.000000E-06 
+           W    1.3          
+         VTO   -3.157        
+          KP   10.750000E-06 
+       GAMMA    0            
+         PHI     .6          
+      LAMBDA    0            
+          RD     .07735      
+          RS     .04004      
+          RG    5.183        
+         RDS  444.400000E+03 
+          IS    4.318000E-12 
+          JS    0            
+          PB     .8          
+        PBSW     .8          
+         CBD    2.293000E-09 
+          CJ    0            
+        CJSW    0            
+          TT  132.000000E-09 
+        CGSO    1.038000E-09 
+        CGDO  291.900000E-12 
+        CGBO    0            
+         TOX  100.000000E-09 
+          XJ    0            
+          UO  300            
+       UCRIT   10.000000E+03 
+       DELTA    0            
+         ETA    0            
+      DIOMOD    1            
+         VFB    0            
+        LETA    0            
+        WETA    0            
+          U0    0            
+        TEMP    0            
+         VDD    0            
+       XPART    0            
+
+
+**** 09/29/16 20:36:20 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\Rectifier.sch
+
+
+ ****     Current Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1A.x_lm358.sw2 
+         RON    1            
+        ROFF   10.000000E+06 
+         ION    0            
+        IOFF   -1.000000E-06 
+
+
+               X_U1A.x_lm358.sw1 
+         RON    1            
+        ROFF   10.000000E+06 
+         ION   -1.000000E-06 
+        IOFF    0            
+
+
+               X_U1A.x_lm358.sw3 
+         RON    1            
+        ROFF   10.000000E+06 
+         ION   -1.000000E-06 
+        IOFF    0            
+
+
+               X_U1A.x_lm358.sw4 
+         RON    1            
+        ROFF   10.000000E+06 
+         ION    0            
+        IOFF   -1.000000E-06 
+
+
+**** 09/29/16 20:36:20 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ * D:\Radio\Devices\PS3608L\OrCad\Rectifier.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)    0.0000                   ($N_0002) 926.6E-09                       
+
+($N_0003)     .0022                   ($N_0004)   20.0000                       
+
+($N_0005)     .0022                   ($N_0006) 942.1E-09                       
+
+($N_0007)   19.2840                   (X_U1A.x_lm358.6)    -.0560               
+
+(X_U1A.x_lm358.7)   19.8570           (X_U1A.x_lm358.8)   19.8570               
+
+(X_U1A.x_lm358.9)    0.0000           (X_U1A.x_lm358.a)   19.9890               
+
+(X_U1A.x_lm358.b)    -.0115           (X_U1A.x_lm358.10)     .6119              
+
+(X_U1A.x_lm358.11)     .0417          (X_U1A.x_lm358.12)     .0417              
+
+(X_U1A.x_lm358.13)     .5973          (X_U1A.x_lm358.14)     .5973              
+
+(X_U1A.x_lm358.53)   18.5000          (X_U1A.x_lm358.54)     .8220              
+
+(X_U1A.x_lm358.90)   11.4690          (X_U1A.x_lm358.91)   40.0000              
+
+(X_U1A.x_lm358.92)  -40.0000          (X_U1A.x_lm358.99)   10.0000          
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1         7.713E-10
+    V_V2        -2.219E-03
+    X_U1A.x_lm358.vb  -5.596E-07
+    X_U1A.x_lm358.vc  -1.147E-02
+    X_U1A.x_lm358.ve   1.853E-11
+    X_U1A.x_lm358.vlim   1.147E-02
+    X_U1A.x_lm358.vlp  -2.853E-11
+    X_U1A.x_lm358.vln  -5.147E-11
+
+    TOTAL POWER DISSIPATION   6.16E-02  WATTS
+
+
+ERROR -- Convergence problem in transient analysis at Time =  2.768E-06
+         Time step =  6.947E-15, minimum allowable step size =  30.00E-15
+
+  These voltages failed to converge:
+
+    V(X_U1A.x_lm358.a)        =    10.00GV  \   -10.00GV
+    V(X_U1A.x_lm358.b)        =    10.00GV  \   -10.00GV
+
+  These supply currents failed to converge:
+
+    I(V_V2)                   =   325.74MA  \   -1.378GA
+
+ERROR -- Discontinuing simulation due to convergence problem
+
+
+  Last node voltages tried were:
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)     .2452                   ($N_0002)     .1148                       
+
+($N_0003)     .1149                   ($N_0004)   20.0000                       
+
+($N_0005)     .0043                   ($N_0006) 959.5E-09                       
+
+($N_0007)   19.1960                   (X_U1A.x_lm358.6)    -.0057               
+
+(X_U1A.x_lm358.7)   19.1940           (X_U1A.x_lm358.8)   19.1940               
+
+(X_U1A.x_lm358.9)    0.0000           (X_U1A.x_lm358.a) 10.00E+09               
+
+(X_U1A.x_lm358.b) 10.00E+09           (X_U1A.x_lm358.10)     .6443              
+
+(X_U1A.x_lm358.11)     .0034          (X_U1A.x_lm358.12)     .0799              
+
+(X_U1A.x_lm358.13)     .6432          (X_U1A.x_lm358.14)     .6163              
+
+(X_U1A.x_lm358.53)   18.5000          (X_U1A.x_lm358.54)     .8220              
+
+(X_U1A.x_lm358.90)    -.0400          (X_U1A.x_lm358.91)   40.0000              
+
+(X_U1A.x_lm358.92)  -40.0000          (X_U1A.x_lm358.99)   10.0000          
+

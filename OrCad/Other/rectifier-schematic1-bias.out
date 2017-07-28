@@ -1,0 +1,235 @@
+
+**** 07/26/17 21:32:42 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ ** Profile: "SCHEMATIC1-Bias"  [ d:\radio\devices\ps3604l\orcad\other\rectifier-schematic1-bias.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "rectifier-schematic1-bias.sim.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of c:\programfiles\Orcad\PSpice\PSpice.ini file:
+.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib" 
+.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\ediode.lib" 
+.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\pwrmos.lib" 
+.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\diode.lib" 
+
+*Analysis directives: 
+.TRAN  0 40ms 0 10u SKIPBP 
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+.INC ".\rectifier-SCHEMATIC1.net" 
+
+
+
+**** INCLUDING rectifier-SCHEMATIC1.net ****
+* source RECTIFIER
+M_M4         N04862 N06657 0 0 IRF540
+R_R7         0 N02971  10k  
+M_M2         N05803 N03201 0 0 IRF540
+C_C5         N04870 N03059  10000u  
+R_R14         N06741 N04862  10k  
+C_C3         N04862 N06345  47u  
+X_U3         N06565 N06353 N06345 N04862 N06269 LM139 
+V_VS2         N04870 N04862  
++SIN 0 14.1 50 0 0 0
+V_VS1         N05803 N04870  
++SIN 0 14.1 50 0 0 0
+X_U1         N05987 N05807 N05811 N05803 N05819 LM139 
+R_R13         0 N06953  4.7k  
+R_R12         N06269 N06345  4.7k  
+R_R8         N03201 N03059  4.7k  
+X_U2         N02919 N02971 N03059 0 N03201 LM139 
+R_R1         N05803 N05987  4.7k  
+R_R2         N05807 N03059  10k  
+M_M3         N03059 N06269 N04862 N04862 IRF540
+R_R10         N06353 N03059  10k  
+D_D2         N05803 N06345 D1N4148 
+R_R4         N05819 N05811  4.7k  
+I_I2         N03059 0 DC 4Adc  
+R_R15         0 N06741  10k  
+C_C2         0 N03059  47u  
+D_D1         N04862 N05811 D1N4148 
+I_I1         N04870 0 DC 4Adc  
+C_C1         N05803 N05811  47u  
+R_R9         N04862 N06565  4.7k  
+R_R6         N02971 N05803  10k  
+C_C4         0 N03059  47u  
+X_U4         N06953 N06741 N03059 0 N06657 LM139 
+R_R3         N05803 N05807  10k  
+R_R5         0 N02919  4.7k  
+R_R16         N06657 N03059  4.7k  
+R_R11         N04862 N06353  10k  
+M_M1         N03059 N05819 N05803 N05803 IRF540
+C_C6         0 N04870  10000u  
+
+**** RESUMING rectifier-schematic1-bias.sim.cir ****
+.END
+
+**** 07/26/17 21:32:42 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ ** Profile: "SCHEMATIC1-Bias"  [ d:\radio\devices\ps3604l\orcad\other\rectifier-schematic1-bias.sim ] 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         X_U3.dx         X_U1.dx         X_U2.dx         
+          IS    2.682000E-09  800.000000E-18  800.000000E-18  800.000000E-18 
+           N    1.836                                                        
+         ISR    1.565000E-09                                                 
+         IKF     .04417                                                      
+          BV  100                                                            
+         IBV  100.000000E-06                                                 
+          RS     .5664          1               1               1            
+          TT   11.540000E-09                                                 
+         CJO    4.000000E-12                                                 
+          VJ     .5                                                          
+           M     .3333                                                       
+
+
+               X_U4.dx         
+          IS  800.000000E-18 
+          RS    1            
+
+
+**** 07/26/17 21:32:42 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ ** Profile: "SCHEMATIC1-Bias"  [ d:\radio\devices\ps3604l\orcad\other\rectifier-schematic1-bias.sim ] 
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U3.qin        X_U3.qmi        X_U3.qmo        X_U3.qoc        
+               PNP             NPN             NPN             NPN             
+          IS  800.000000E-18  800.000000E-18  800.000000E-18  800.000000E-18 
+          BF    2.000000E+03    1.002000E+03    1.000000E+03   20.690000E+03 
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         CJC                                    1.000000E-15    1.000000E-15 
+          TF                                                    3.540000E-09 
+          TR                                  475.400000E-09  472.800000E-09 
+          CN    2.2             2.42            2.42            2.42         
+           D     .52             .87             .87             .87         
+
+
+               X_U1.qin        X_U1.qmi        X_U1.qmo        X_U1.qoc        
+               PNP             NPN             NPN             NPN             
+          IS  800.000000E-18  800.000000E-18  800.000000E-18  800.000000E-18 
+          BF    2.000000E+03    1.002000E+03    1.000000E+03   20.690000E+03 
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         CJC                                    1.000000E-15    1.000000E-15 
+          TF                                                    3.540000E-09 
+          TR                                  475.400000E-09  472.800000E-09 
+          CN    2.2             2.42            2.42            2.42         
+           D     .52             .87             .87             .87         
+
+
+               X_U2.qin        X_U2.qmi        X_U2.qmo        X_U2.qoc        
+               PNP             NPN             NPN             NPN             
+          IS  800.000000E-18  800.000000E-18  800.000000E-18  800.000000E-18 
+          BF    2.000000E+03    1.002000E+03    1.000000E+03   20.690000E+03 
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         CJC                                    1.000000E-15    1.000000E-15 
+          TF                                                    3.540000E-09 
+          TR                                  475.400000E-09  472.800000E-09 
+          CN    2.2             2.42            2.42            2.42         
+           D     .52             .87             .87             .87         
+
+
+               X_U4.qin        X_U4.qmi        X_U4.qmo        X_U4.qoc        
+               PNP             NPN             NPN             NPN             
+          IS  800.000000E-18  800.000000E-18  800.000000E-18  800.000000E-18 
+          BF    2.000000E+03    1.002000E+03    1.000000E+03   20.690000E+03 
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         CJC                                    1.000000E-15    1.000000E-15 
+          TF                                                    3.540000E-09 
+          TR                                  475.400000E-09  472.800000E-09 
+          CN    2.2             2.42            2.42            2.42         
+           D     .52             .87             .87             .87         
+
+
+**** 07/26/17 21:32:42 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+
+ ** Profile: "SCHEMATIC1-Bias"  [ d:\radio\devices\ps3604l\orcad\other\rectifier-schematic1-bias.sim ] 
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               IRF540          
+               NMOS            
+       LEVEL    3            
+           L    2.000000E-06 
+           W     .94         
+         VTO    3.136        
+          KP   20.710000E-06 
+       GAMMA    0            
+         PHI     .6          
+      LAMBDA    0            
+          RD     .02252      
+          RS     .02134      
+          RG    5.557        
+         RDS  444.400000E+03 
+          IS    2.859000E-12 
+          JS    0            
+          PB     .8          
+        PBSW     .8          
+         CBD    2.408000E-09 
+          CJ    0            
+        CJSW    0            
+          TT  142.000000E-09 
+        CGSO    1.153000E-09 
+        CGDO  445.700000E-12 
+        CGBO    0            
+         TOX  100.000000E-09 
+          XJ    0            
+       UCRIT   10.000000E+03 
+       DELTA    0            
+         ETA    0            
+      DIOMOD    1            
+         VFB    0            
+        LETA    0            
+        WETA    0            
+          U0    0            
+        TEMP    0            
+         VDD    0            
+       XPART    0            
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME            1.50
+

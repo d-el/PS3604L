@@ -1,0 +1,22 @@
+* Schematics Netlist *
+
+
+
+V_V7         $N_0001 0 2V
+X_S2    $N_0002 $N_0001 $N_0003 0 CulerReg_S2 
+V_V1         $N_0004 0 12V
+C_C3         $N_0004 0  10u  
+V_V8         $N_0002 0  
++PULSE 0 5 0us 5us 5us 5ms 10ms
+R_R5         $N_0005 $N_0003  20  
+R_R7         $N_0005 0  200  
+Q_Q1         $N_0004 $N_0006 $N_0005 QBC817-16/PLP 
+C_C5         $N_0006 0  10u  
+V_V6         $N_0007 0  
++PULSE 0 11.5 0us 0.1us 0.1us 10us 10us
+R_R1         $N_0006 $N_0007  10  
+
+.subckt CulerReg_S2 1 2 3 4  
+S_S2         3 4 1 2 Sbreak
+RS_S2         1 2 1G
+.ends CulerReg_S2
