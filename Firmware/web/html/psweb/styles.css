@@ -1,0 +1,237 @@
+hyml, body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #002B36;
+    color: #36D695;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+main {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+footer {
+    align-self: center;
+    width: 100vw;
+    font-size: 12pt:
+}
+
+
+main > div {
+    display: table-row;
+}
+main > div .name {
+    display: table-cell;
+    padding: 0 10px 0 0;
+}
+main > div .info {
+    display: table-cell;
+}
+
+
+
+.price-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+    background: #ffffff;
+	flex-wrap: wrap;
+}
+
+.price-container .price-block {
+	padding: 0;
+	width: 580px;
+	height: 532px;
+	border-radius: 15px;
+	border: 1px solid #da2223;
+}
+
+.price-container .pb1 {
+	margin: 15px auto;
+}
+
+.price-container .pb2 {
+	margin: 15px auto;
+}
+
+.price-container .pb-name {
+	display: block;
+	width: 580px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	color: #5c1c16;
+	font-size: 36px;
+	font-weight: normal;
+}
+
+.price-container .decorate-line {
+	height: 1px;
+    background: #c91c1e;
+}
+
+.price-container .dl1 {
+	width: 95%;
+	margin: 5px auto;
+}
+
+.price-container .dl2 {
+	width: 55%;
+	margin: 5px auto 5px 2.5%;
+}
+
+.price-container .dl3 {
+	width: 55%;
+	margin: 5px 2.5% 0px auto;
+}
+
+.price-container .pb-description {
+	display: block;
+	padding: 0;
+	text-align: center;
+	color: #444444;
+	font-size: 20px;
+	font-family: 'Lobster', cursive;
+}
+
+.price-container .pb-d-1 {
+	width: 280px;
+	margin: 10px auto 5px 70px;
+}
+
+.price-container .pb-d-2 {
+	width: 402px;
+	margin: 0px auto 10px 175px;
+}
+
+.price-container .pb-submit a{
+    display: block;
+	padding-bottom: 5px;
+	height: 45px;
+	width: 240px;
+	background: #c42023;
+	border-radius: 15px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: lighter;
+	font-size: 35px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #ffffff;
+}
+
+.price-container .pb-s-1 {
+	margin: 10px auto 5px 12%;
+}
+
+.price-container .pb-s-2 {
+	margin: 10px auto 5px 47%;
+}
+
+.price-container .pb-submit a:hover {
+	background: #dd0408;
+	-webkit-transition: background .5s ease-out;
+    -moz-transition: background .5s ease-out;
+    -o-transition: background .5s ease-out;
+	transition: background .5s ease-out;
+}
+
+.price-container .pb-submit a:active {
+	background: #a1070a;
+	-webkit-transition: background .5s ease-out;
+    -moz-transition: background .5s ease-out;
+    -o-transition: background .5s ease-out;
+	transition: background .5s ease-out;
+}
+
+.price-container .prices {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+}
+
+.price-container .prr1 {
+	margin: 10px 0 0 13%;
+}
+
+.price-container .prr2 {
+	margin: 10px 0 0 48%;
+}
+
+.price-container .prices .sm {
+	text-align: right;
+	color: #444444;
+	font-size: 24px;
+	line-height: 30px;
+	font-family: 'Lobster', cursive;
+}
+
+.price-container .prices .vertical-decorate-line1 {
+	height: 237px;
+	width: 2px;
+	margin: auto 2px;
+    background: url('images/7.png');
+}
+
+.price-container .prices .vertical-decorate-line2 {
+	height: 190px;
+	width: 2px;
+	margin: auto 2px;
+    background: url('images/11.png');
+}
+
+.price-container .prices .delite-price {
+	margin-left: 7px;  
+	text-align: leftt;
+	color: #444444;
+	font-size: 24px;
+	line-height: 30px;
+	font-family: 'Pertili', serif;
+	text-decoration: line-through;
+}
+
+.price-container .prices .active-price {
+	margin-left: 3px;  
+	text-align: left;
+	color: #c42023;
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: bold;
+	font-family: 'Pertili', serif;
+}
+
+.price-container .price-tree1 {
+	height: 406px;
+	width: 277px;
+	float: right;
+	position: relative;
+	right: 10px;
+	bottom: 130px;
+	background-image: url('images/8.png');
+}
+
+.price-container .price-tree2 {
+	height: 387px;
+	width: 197px;
+	float: left;
+	position: relative;
+	left: 20px;
+	bottom: 170px;
+	background-image: url('images/9.1.png');
+}
+
+.price-container .septum {
+	height: 151px;
+	width: 828px;
+	margin: 0;
+	background-image: url('images/10.png');
+}

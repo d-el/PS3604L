@@ -1,0 +1,6 @@
+ lib=C:\ProgramFiles\Orcad\Capture\Library\PSpice\phil_bjt.lib, offset=39191, size=626
+ lib=C:\ProgramFiles\Orcad\Capture\Library\PSpice\phil_bjt.lib, offset=49210, size=634
+ lib=C:\ProgramFiles\Orcad\Capture\Library\PSpice\anlg_dev.lib, offset=9071, size=1695
+ lib=C:\ProgramFiles\Orcad\Capture\Library\PSpice\pwrmos.lib, offset=54819, size=335
+ lib=C:\ProgramFiles\Orcad\Capture\Library\PSpice\diode.lib, offset=26043, size=163
+ lib=C:\ProgramFiles\Orcad\Capture\Library\PSpice\diode.lib, offset=861, size=547
