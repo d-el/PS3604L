@@ -15,13 +15,13 @@ LifeCycleDefinitionGUID=
 RevisionNamingSchemeGUID=
 
 [OutputGroup1]
-Name=
+Name=PS3604LR.OutJob
 Description=
 TargetOutputMedium=For_Manufacturer
 VariantName=[No Variations]
 VariantScope=0
 CurrentConfigurationName=
-TargetPrinter=doPDF v7
+TargetPrinter=OrCADPS_17.2
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=0
 OutputMedium1=Print Job
 OutputMedium1_Type=Printer
@@ -29,10 +29,8 @@ OutputMedium1_Printer=
 OutputMedium1_PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputMedium2=PDF_For_Manufacture
 OutputMedium2_Type=Publish
-OutputMedium3=For_BCP_manufacturer
+OutputMedium3=For_Manufacturer
 OutputMedium3_Type=GeneratedFiles
-OutputMedium4=For_Manufacturer
-OutputMedium4_Type=GeneratedFiles
 OutputType1=Schematic Print
 OutputName1=Schematic Prints
 OutputCategory1=Documentation
@@ -42,7 +40,6 @@ OutputEnabled1=0
 OutputEnabled1_OutputMedium1=0
 OutputEnabled1_OutputMedium2=1
 OutputEnabled1_OutputMedium3=0
-OutputEnabled1_OutputMedium4=0
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=0.73|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration1_Name1=OutputConfigurationParameter1
@@ -56,7 +53,6 @@ OutputEnabled2=0
 OutputEnabled2_OutputMedium1=0
 OutputEnabled2_OutputMedium2=2
 OutputEnabled2_OutputMedium3=0
-OutputEnabled2_OutputMedium4=0
 OutputDefault2=0
 PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType3=BOM_PartType
@@ -67,8 +63,7 @@ OutputVariantName3=
 OutputEnabled3=1
 OutputEnabled3_OutputMedium1=0
 OutputEnabled3_OutputMedium2=3
-OutputEnabled3_OutputMedium3=0
-OutputEnabled3_OutputMedium4=1
+OutputEnabled3_OutputMedium3=3
 OutputDefault3=0
 PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration3_Name1=ColumnNameFormat
@@ -76,15 +71,15 @@ Configuration3_Item1=CaptionAsName
 Configuration3_Name2=Filter
 Configuration3_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
 Configuration3_Name3=General
-Configuration3_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=767|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
+Configuration3_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=660|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
 Configuration3_Name4=GroupOrder
-Configuration3_Item4=Comment=True|Footprint=True
+Configuration3_Item4=
 Configuration3_Name5=OutputConfigurationParameter1
 Configuration3_Item5=??
 Configuration3_Name6=SortOrder
 Configuration3_Item6=Designator=Up
 Configuration3_Name7=VisibleOrder
-Configuration3_Item7=Designator=100|Comment=100|Additionally=100|Description=100|Footprint=100|LibRef=100|Quantity=100
+Configuration3_Item7=Designator=99|Comment=99|Additionally=99|Description=99|Footprint=99|LibRef=99|Quantity=27|Part Number=164
 OutputType4=PCB 3D Print
 OutputName4=PCB 3D Print Top
 OutputCategory4=Documentation
@@ -94,7 +89,6 @@ OutputEnabled4=0
 OutputEnabled4_OutputMedium1=0
 OutputEnabled4_OutputMedium2=4
 OutputEnabled4_OutputMedium3=0
-OutputEnabled4_OutputMedium4=0
 OutputDefault4=0
 PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=2.55|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration4_Name1=OutputConfigurationParameter1
@@ -108,7 +102,6 @@ OutputEnabled5=0
 OutputEnabled5_OutputMedium1=0
 OutputEnabled5_OutputMedium2=5
 OutputEnabled5_OutputMedium3=0
-OutputEnabled5_OutputMedium4=0
 OutputDefault5=0
 PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=2.55|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration5_Name1=OutputConfigurationParameter1
@@ -118,11 +111,10 @@ OutputName6=Gerber Files
 OutputCategory6=Fabrication
 OutputDocumentPath6=
 OutputVariantName6=
-OutputEnabled6=0
+OutputEnabled6=1
 OutputEnabled6_OutputMedium1=0
 OutputEnabled6_OutputMedium2=0
 OutputEnabled6_OutputMedium3=1
-OutputEnabled6_OutputMedium4=0
 OutputDefault6=0
 Configuration6_Name1=OutputConfigurationParameter1
 Configuration6_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Metric|GerberUnit=Metric|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=39|MinusApertureTolerance=39|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=4|NumberOfDecimals=4|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973834~1,16777217~1,16842751~1,16973835~1,16973831~1,16973837~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=True|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=39|PlusApertureTolerance=39|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
@@ -131,11 +123,10 @@ OutputName7=NC Drill Files
 OutputCategory7=Fabrication
 OutputDocumentPath7=
 OutputVariantName7=
-OutputEnabled7=0
+OutputEnabled7=1
 OutputEnabled7_OutputMedium1=0
 OutputEnabled7_OutputMedium2=0
 OutputEnabled7_OutputMedium3=2
-OutputEnabled7_OutputMedium4=0
 OutputDefault7=0
 Configuration7_Name1=OutputConfigurationParameter1
 Configuration7_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=4|NumberOfUnits=4|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Metric|ZeroesMode=SuppressTrailingZeroes
@@ -148,16 +139,15 @@ OutputEnabled8=0
 OutputEnabled8_OutputMedium1=0
 OutputEnabled8_OutputMedium2=6
 OutputEnabled8_OutputMedium3=0
-OutputEnabled8_OutputMedium4=0
 OutputDefault8=0
 PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration8_Name1=OutputConfigurationParameter1
 Configuration8_Item1=Record=ExportPDF3DSetting|Version=110|Format=0|Flags=8158|Scheme=0|ViewColorR0=255|ViewColorG0=255|ViewColorB0=255|ViewLignt0=9|ViewColorR1=255|ViewColorG1=255|ViewColorB1=255|ViewLignt1=9|ViewColorR2=255|ViewColorG2=255|ViewColorB2=255|ViewLignt2=9|ViewColorR3=255|ViewColorG3=255|ViewColorB3=255|ViewLignt3=9
 
 [PublishSettings]
-OutputFilePath2=D:\Radio\Devices\PS3604L\PCB\PS3604LR\PS3604LR_DOC\PS3604LR.pdf
-ReleaseManaged2=0
-OutputBasePath2=PS3604LR_DOC\
+OutputFilePath2=D:\Radio\Devices\PS3604L\PCB\PS3604LR\Project Outputs for PS3604LR\PS3604LR.pdf
+ReleaseManaged2=1
+OutputBasePath2=Project Outputs for PS3604LR
 OutputPathMedia2=
 OutputPathMediaValue2=Manufacture
 OutputPathOutputer2=[Output Type]
@@ -182,11 +172,11 @@ ShowComponentParameters2=1
 GlobalBookmarks2=0
 PDFACompliance2=Disabled
 PDFVersion2=Default
-OutputFilePath3=D:\Radio\Devices\PS3604L\PCB\PS3604LR\PS3604LR_DOC\PCB_Manufacture\
-ReleaseManaged3=0
-OutputBasePath3=PS3604LR_DOC\
-OutputPathMedia3=PCB_Manufacture
-OutputPathMediaValue3=PCB_Manufacture
+OutputFilePath3=D:\Radio\Devices\PS3604L\PCB\PS3604LR\Project Outputs for PS3604LR\
+ReleaseManaged3=1
+OutputBasePath3=Project Outputs for PS3604LR
+OutputPathMedia3=
+OutputPathMediaValue3=Manufacture
 OutputPathOutputer3=[Output Type]
 OutputPathOutputerPrefix3=
 OutputPathOutputerValue3=
@@ -195,24 +185,11 @@ OutputFileNameMulti3=
 UseOutputNameForMulti3=1
 OutputFileNameSpecial3=
 OpenOutput3=1
-OutputFilePath4=D:\Radio\Devices\PS3604L\PCB\PS3604LR\PS3604LR_DOC\
-ReleaseManaged4=0
-OutputBasePath4=PS3604LR_DOC\
-OutputPathMedia4=
-OutputPathMediaValue4=Manufacture
-OutputPathOutputer4=[Output Type]
-OutputPathOutputerPrefix4=
-OutputPathOutputerValue4=
-OutputFileName4=
-OutputFileNameMulti4=
-UseOutputNameForMulti4=1
-OutputFileNameSpecial4=
-OpenOutput4=1
 
 [GeneratedFilesSettings]
-RelativeOutputPath2=D:\Radio\Devices\PS3604L\PCB\PS3604LR\PS3604LR_DOC\PS3604LR.pdf
+RelativeOutputPath2=D:\Radio\Devices\PS3604L\PCB\PS3604LR\Project Outputs for PS3604LR\PS3604LR.pdf
 OpenOutputs2=1
-RelativeOutputPath3=D:\Radio\Devices\PS3604L\PCB\PS3604LR\PS3604LR_DOC\PCB_Manufacture\
+RelativeOutputPath3=D:\Radio\Devices\PS3604L\PCB\PS3604LR\Project Outputs for PS3604LR\
 OpenOutputs3=1
 AddToProject3=1
 TimestampFolder3=0
@@ -222,14 +199,4 @@ OpenGerberOutput3=0
 OpenNCDrillOutput3=0
 OpenIPCOutput3=0
 EnableReload3=0
-RelativeOutputPath4=D:\Radio\Devices\PS3604L\PCB\PS3604LR\PS3604LR_DOC\
-OpenOutputs4=1
-AddToProject4=1
-TimestampFolder4=0
-UseOutputName4=0
-OpenODBOutput4=0
-OpenGerberOutput4=0
-OpenNCDrillOutput4=0
-OpenIPCOutput4=0
-EnableReload4=0
 
