@@ -21,7 +21,7 @@ TargetOutputMedium=For_Manufacturer
 VariantName=[No Variations]
 VariantScope=0
 CurrentConfigurationName=
-TargetPrinter=OrCADPS_17.2
+TargetPrinter=pos58(copy of 1)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=0
 OutputMedium1=Print Job
 OutputMedium1_Type=Printer
@@ -71,15 +71,15 @@ Configuration3_Item1=CaptionAsName
 Configuration3_Name2=Filter
 Configuration3_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
 Configuration3_Name3=General
-Configuration3_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=660|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
+Configuration3_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=657|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
 Configuration3_Name4=GroupOrder
-Configuration3_Item4=
+Configuration3_Item4=Part Number=True
 Configuration3_Name5=OutputConfigurationParameter1
 Configuration3_Item5=??
 Configuration3_Name6=SortOrder
 Configuration3_Item6=Designator=Up
 Configuration3_Name7=VisibleOrder
-Configuration3_Item7=Designator=99|Comment=99|Additionally=99|Description=99|Footprint=99|LibRef=99|Quantity=27|Part Number=164
+Configuration3_Item7=Designator=95|Comment=96|Footprint=150|Part Number=193|Part Description=198|Quantity=53
 OutputType4=PCB 3D Print
 OutputName4=PCB 3D Print Top
 OutputCategory4=Documentation

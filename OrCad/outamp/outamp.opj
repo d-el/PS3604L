@@ -48,6 +48,22 @@
       (Sort User)))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
+    (S
+      (FullPartName "S.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (DigStim1
+      (FullPartName "DigStim1.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCSTM.OLB")
+      (DeviceIndex "0"))
+    (DigClock
+      (FullPartName "DigClock.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (STIM1
+      (FullPartName "STIM1.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
     (BY249-300
       (FullPartName "BY249-300.Normal")
       (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\DIODE.OLB")
@@ -126,21 +142,19 @@
          "D:\Radio\Devices\PS3604L\OrCad\outamp\outamp.dsn" "SCHEMATIC1")
       (Path "Outputs")
       (Path "PSpice Resources")
-      (Path "PSpice Resources" "Simulation Profiles")
-      (Select "Design Resources"
-         "D:\Radio\Devices\PS3604L\OrCad\outamp\outamp.dsn" "SCHEMATIC1" "PAGE1"))
+      (Path "PSpice Resources" "Simulation Profiles"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 639"))
+        (Placement "44 0 1 -1 -1 -8 -30 0 200 0 639"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -8 -30 205 1300 1 598")
-        (Scroll "72 424")
-        (Zoom "124")
+        (Placement "44 2 3 -1 -1 -8 -30 205 1300 1 598")
+        (Scroll "0 22")
+        (Zoom "82")
         (Occurrence "/"))
       (Path "D:\RADIO\DEVICES\PS3604L\ORCAD\OUTAMP\OUTAMP.DSN")
       (Schematic "SCHEMATIC1")

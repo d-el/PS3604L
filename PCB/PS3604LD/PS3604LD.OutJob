@@ -21,7 +21,7 @@ TargetOutputMedium=For_Manufacturer
 VariantName=[No Variations]
 VariantScope=0
 CurrentConfigurationName=
-TargetPrinter=OrCADPS_17.2
+TargetPrinter=pos58(copy of 1)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=0
 OutputMedium1=Print Job
 OutputMedium1_Type=Printer
@@ -66,9 +66,9 @@ Configuration2_Item4=Part Number=True
 Configuration2_Name5=OutputConfigurationParameter1
 Configuration2_Item5=??
 Configuration2_Name6=SortOrder
-Configuration2_Item6=LibRef=Up
+Configuration2_Item6=Description=Up
 Configuration2_Name7=VisibleOrder
-Configuration2_Item7=Designator=144|Description=161|Footprint=161|Part Number=224|Quantity=73
+Configuration2_Item7=Designator=123|Part Description=290|Footprint=123|Part Number=172|Quantity=55
 OutputType3=PCB 3D Print
 OutputName3=PCB 3D Print Top
 OutputCategory3=Documentation

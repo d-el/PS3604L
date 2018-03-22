@@ -16,7 +16,7 @@ Notes=
 @End General
 @Analysis: 0 1
 +0 0 0 
-+0 "2000us" 
++0 "200us" 
 +1 "" 
 +2 "0" 
 +3 "1ms" 

@@ -15,7 +15,7 @@ LifeCycleDefinitionGUID=
 RevisionNamingSchemeGUID=
 
 [OutputGroup1]
-Name=
+Name=PS3604LF.OutJob
 Description=
 TargetOutputMedium=MANUAL
 VariantName=[No Variations]
@@ -60,15 +60,15 @@ Configuration2_Item1=CaptionAsName
 Configuration2_Name2=Filter
 Configuration2_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
 Configuration2_Name3=General
-Configuration2_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=660|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
+Configuration2_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=657|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
 Configuration2_Name4=GroupOrder
 Configuration2_Item4=Part Number=True
 Configuration2_Name5=OutputConfigurationParameter1
 Configuration2_Item5=??
 Configuration2_Name6=SortOrder
-Configuration2_Item6=Designator=Up
+Configuration2_Item6=Description=Up
 Configuration2_Name7=VisibleOrder
-Configuration2_Item7=Designator=187|Description=199|Footprint=162|Part Number=200|Quantity=56
+Configuration2_Item7=Designator=121|Part Description=322|Footprint=208|Part Number=118|Quantity=35
 OutputType3=PCB 3D Print
 OutputName3=PCB 3D Print Top
 OutputCategory3=Documentation

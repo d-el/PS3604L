@@ -68,7 +68,7 @@ Configuration2_Item5=??
 Configuration2_Name6=SortOrder
 Configuration2_Item6=Designator=Up
 Configuration2_Name7=VisibleOrder
-Configuration2_Item7=Designator=246|Description=185|Footprint=138|Part Number=177|Quantity=41
+Configuration2_Item7=Designator=276|Part Description=183|Footprint=127|Part Number=163|Quantity=38
 OutputType3=PCBDrawing
 OutputName3=Draftsman
 OutputCategory3=Documentation
