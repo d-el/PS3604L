@@ -17,50 +17,53 @@ hyml, body {
 	font-weight: 400;
 	text-rendering: optimizeLegibility;
 }
-
 body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: stretch;
 }
-
 main {
 	flex-grow: 1;
 }
-
 footer {
 	background: #1b1e24;
 	text-align: center;
 	min-height: 50px;
-	margin-top: 50px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-
-/*** errorbox **/
-.errorbox {
-	display: block;
+/*** statusbox **/
+.statusbox {
+	margin: 12px auto 0 auto;
+	display: none;
 	max-width: 600px;
 	color: #D5DDE5;
-	background: #f2171766;
+	background: #398a1e;
 	border-radius: 3px;
 	font-size: 23px;
 	font-weight: 100;
-	padding: 2px;
-	margin: auto;
 	text-align: center;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	vertical-align: middle;
+	transition: all ease-in-out 500ms;
+	opacity: 1;
+	height: 35px;
+	line-height: 35px;
 }
-
+.statusbox.hide {
+	opacity: 0;
+	transform: scale(0);
+	height: 0;
+	line-height: 0;
+}
 /*** Table Styles **/
 main > div {
 	margin: 12px 12px 0 12px;
 }
-
 div.table-title {
 	display: block;
 	margin: auto;
@@ -68,7 +71,6 @@ div.table-title {
 	color:#D5DDE5;
 	background:#1b1e24;
 	border-bottom:4px solid #9ea7af;
-	border-right: 1px solid #343a45;
 	border-radius: 3px 3px 0 0;
 	font-size:23px;
 	font-weight: 100;
@@ -77,7 +79,6 @@ div.table-title {
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	vertical-align:middle;
 }
-  
 .table-fill {
 	background: white;
 	border-radius:3px;
@@ -89,7 +90,6 @@ div.table-title {
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 	animation: float 5s infinite;
 }
-
 tr {
 	border-top: 1px solid #C1C3D1;
 	color:#666B85;
@@ -111,26 +111,21 @@ tr:first-child {
 tr:last-child {
 	border-bottom:none;
 }
-   
 tr:nth-child(odd) td {
 	background:#EBEBEB;
 }
- 
 tr:nth-child(odd):hover td {
 	background:#4E5066;
 }
-
 tr:last-child td:first-child {
 	border-bottom-left-radius: 3px;
 }
- 
 tr:last-child td:last-child {
 	border-bottom-right-radius: 3px;
 }
- 
 td {
 	background:#FFFFFF;
-	padding: 3px;
+	padding: 4px 8px;
 	text-align:left;
 	vertical-align:middle;
 	font-weight:300;

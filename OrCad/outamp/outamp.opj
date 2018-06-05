@@ -14,7 +14,7 @@
       (File "C:\ProgramFiles\Orcad\Capture\library\pspice\special.olb"
         (Type "Schematic Library")))
     (NoModify)
-    (File "outamp.dsn"
+    (File ".\outamp.dsn"
       (Type "Schematic Design"))
     (BuildFileAddedOrDeleted "x")
     (CompileFileAddedOrDeleted "x")
@@ -35,17 +35,18 @@
          ".\outamp-schematic1-bias.sim"
         (DisplayName "SCHEMATIC1-Bias")
         (Type "PSpice Profile"))
-      (ActiveProfile ".\outamp-schematic1-timetrans.sim")
       (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
          ".\outamp-schematic1-timetrans.sim"
         (DisplayName "SCHEMATIC1-timetrans")
+        (Type "PSpice Profile"))
+      (ActiveProfile ".\outamp-schematic1-timetrans1.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\outamp-schematic1-timetrans1.sim"
+        (DisplayName "SCHEMATIC1-timetrans1")
         (Type "PSpice Profile")))
-    (Folder "Model Libraries"
-      (Sort User))
-    (Folder "Stimulus Files"
-      (Sort User))
-    (Folder "Include Files"
-      (Sort User)))
+    (Folder "Model Libraries")
+    (Folder "Stimulus Files")
+    (Folder "Include Files"))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
     (S
@@ -132,14 +133,10 @@
       (FullPartName "VDC.Normal")
       (LibraryName "..\..\LIBRARY\PSPICE\SOURCE.OLB")
       (DeviceIndex "0")))
-  (LastUsedLibraryBrowseDirectory "LIBRARY\PSPICE")
+  (LastUsedLibraryBrowseDirectory "C:\ProgramFiles\Orcad\Capture\Library")
   (GlobalState
     (FileView
       (Path "Design Resources")
-      (Path "Design Resources"
-         "D:\Radio\Devices\PS3604L\OrCad\outamp\outamp.dsn")
-      (Path "Design Resources"
-         "D:\Radio\Devices\PS3604L\OrCad\outamp\outamp.dsn" "SCHEMATIC1")
       (Path "Outputs")
       (Path "PSpice Resources")
       (Path "PSpice Resources" "Simulation Profiles"))
@@ -147,15 +144,16 @@
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -8 -30 0 200 0 639"))
+        (Placement "44 0 1 -1 -1 -8 -30 0 238 0 639"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 2 3 -1 -1 -8 -30 205 1300 1 598")
-        (Scroll "0 22")
-        (Zoom "82")
+        (Placement "44 0 1 -1 -1 -1 -1 239 1331 1 636")
+        (Scroll "59 0")
+        (Zoom "100")
         (Occurrence "/"))
       (Path "D:\RADIO\DEVICES\PS3604L\ORCAD\OUTAMP\OUTAMP.DSN")
       (Schematic "SCHEMATIC1")
-      (Page "PAGE1"))))
+      (Page "PAGE1")))
+  (MPSSessionName "d_el"))

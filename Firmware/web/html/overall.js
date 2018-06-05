@@ -1,8 +1,8 @@
 function nano(template, data) {
 	return template.replace(/\{([\w\.]*)\}/g, function(str, key) {
-	  var keys = key.split("."), v = data[keys.shift()];
-	  for (var i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
-	  return (typeof v !== "undefined" && v !== null) ? v : "";
+	var keys = key.split("."), v = data[keys.shift()];
+	for (var i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
+	return (typeof v !== "undefined" && v !== null) ? v : "";
 	});
 }
 
@@ -15,25 +15,32 @@ function updateTable(query, data) {
 }
 
 function updateInfo() {
+
 	var oReq = new XMLHttpRequest();
 	oReq.open('GET', 'statemeastask.bin', true);
 	oReq.timeout = 5000;
 	oReq.responseType = 'arraybuffer';
 	
-	oReq.onerror = function (oEvent) {
-		var errorbox = document.querySelector('.errorbox');
-		errorbox.style.display = 'block';
-		return errorbox.innerHTML = 'Error: ' + oReq.status;
+	oReq.ontimeout = function (oEvent) {
+		var statusbox = document.querySelector('.statusbox');
+		if(statusbox.classList.contains('hide')){
+			statusbox.style.background = 'red';
+			statusbox.innerHTML = 'Connection timeout';
+			statusbox.classList.remove('hide');
+		}
 	}
 	
 	oReq.onload = function (oEvent) {
-
-		var errorbox = document.querySelector('.errorbox');
-		if(oReq.status == 200) {
-			errorbox.style.display = 'none';
-		}else{
-			errorbox.style.display = 'block';
-			return errorbox.innerHTML = 'Error: ' + oReq.status;
+		if(oReq.status == 200){
+			var statusbox = document.querySelector('.statusbox');
+			if(!statusbox.classList.contains('hide')){
+				statusbox.style.background = '#398a1e';
+				statusbox.style.display = 'block';
+				statusbox.innerHTML = 'Connection successful';
+				setTimeout(function() {
+					statusbox.classList.add('hide');
+				}, 5000);
+			}
 		}
 
 		var x = new DataView(oReq.response, 0);
@@ -67,4 +74,4 @@ function updateInfo() {
 	oReq.send(null);
 }
 updateInfo();
-setInterval(updateInfo, 2000);
+setInterval(updateInfo, 500);
