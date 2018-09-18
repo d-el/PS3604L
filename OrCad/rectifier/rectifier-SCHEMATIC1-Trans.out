@@ -1,5 +1,5 @@
 
-**** 03/13/18 15:05:22 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+**** 05/03/18 20:55:52 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
 
  ** Profile: "SCHEMATIC1-Trans"  [ D:\Radio\Devices\PS3604L\OrCad\rectifier\rectifier-schematic1-trans.sim ] 
 
@@ -18,13 +18,90 @@
 *Libraries: 
 * Local Libraries :
 * From [PSPICE NETLIST] section of c:\programfiles\Orcad\PSpice\PSpice.ini file:
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\ediode.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\pwrmos.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\diode.lib" 
+.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\nom.lib" 
+.inc "C:\ProgramFiles\Orcad\Capture\Library\PSpice\nom.lib" 
 
 *Analysis directives: 
+
+**** INCLUDING nom.lib ****
+* Library of standard devices: Analog and Digital
+
+*  Copyright Cadence Design Systems, Inc. 2000 All Rights Reserved.
+*
+*
+* $Revision:   1.3  $
+* $Author:   HIRASUNA  $
+* $Date:   11 May 2000 13:26:32  $
+
+* This "master library" file calls out the other libraries which we supply.
+* It takes time for PSpice to scan each library file.  PSpice creates an
+* index file, called <filename>.IND, to speed up the search process.
+* The index file is re-created whenever PSpice senses that it might be invalid.
+
+* If the library search times are too long, you may want to "comment out"
+* references to device libraries which you are not using.  Also, you can always
+* bypass the library approach and simply copy the model or subcircuit which you
+* need directly into your circuit file.
+
+* utility subcircuits and models 
+
+.lib "breakout.lib"             ; generic devices for schematic capture
+.lib "filtsub.lib"              ; Filter biquad stages and LC ladder branches
+.lib "tline.lib"                ; transmission line models and subcircuits
+
+* "regular" device libraries
+
+.lib "nom_dig.lib"              ; Digital (logic) devices - Requires "Digital Simulation"
+
+.lib "1_shot.lib"               ; Monostable Multivibrators
+.lib "ana_swit.lib"             ; Analog Switches
+.lib "anl_misc.lib"             ; Miscellaneous circuits
+.lib "bipolar.lib"              ; Bipolar transistors
+.lib "dc_prim.lib"              ; Primitive models for DAC & ADC Schematic models
+.lib "diode.lib"                ; Diodes
+.lib "darlngtn.lib"             ; Darlington transistors
+.lib "igbt.lib"                 ; IGBT transistors
+.lib "jfet.lib"                 ; JFET transistors
+.lib "linedriv.lib"             ; Line Drivers, Receivers and Transceivers
+.lib "opamp.lib"                ; Linear ICs: op-amps, voltage comparators,
+                                ; and voltage regulators
+.lib "magnetic.lib"             ; Non-linear transformer cores
+.lib "mix_misc.lib"             ; Miscellaneous circuits
+.lib "opto.lib"                 ; Optocouplers
+.lib "pwrbjt.lib"               ; Power bipolar transistors (BJTs)
+.lib "pwrmos.lib"               ; Power MOSFETs
+.lib "xtal.lib"                 ; Quartz crystals
+.lib "thyristr.lib"             ; Thyristors - Requires "Analog Behavioral Modeling"
+.lib "swit_rav.lib"             ; Average power supply models
+.lib "swit_reg.lib"             ; Switchmode regulator controller models
+
+* manufacturer's contributions
+
+.lib "vendor.lib"               ; Vendor supplied analog models
+
+* Japanese and European libraries
+
+* The following library files are installed if/when you choose to load 
+* the Japanese and/or European part libraries during installation.  Since 
+* there is no guarantee that the user will elect to install these library 
+* files, we have commented out these references so as not to cause a 
+* "Cannot find library" error in PSpice.  Please remove the "*" preceding the 
+* .lib reference to the library file(s) which you have installed.  
+* Please note that once you have edited this library file, PSpice will 
+* recreate the index file the first time [only] it is used.  Depending on 
+* the size of the library file, this process can take some time.
+
+
+.lib "japan.lib"              ; Japanese diodes, rectifiers, zeners,
+                               ; varactors, Schottky diodes, BJTs,
+                               ; JFETs, power BJTs, power MOSFETs, opamps.
+
+.lib "europe.lib"             ; European parts
+
+
+* end of library file
+
+**** RESUMING rectifier-schematic1-trans.sim.cir ****
 .TRAN  0 40ms 0 50us 
 .PROBE V(*) I(*) W(*) D(*) NOISE(*) 
 .INC ".\rectifier-SCHEMATIC1.net" 
@@ -80,7 +157,7 @@ C_C6         0 N04870  20000u
 **** RESUMING rectifier-schematic1-trans.sim.cir ****
 .END
 
-**** 03/13/18 15:05:22 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+**** 05/03/18 20:55:52 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
 
  ** Profile: "SCHEMATIC1-Trans"  [ D:\Radio\Devices\PS3604L\OrCad\rectifier\rectifier-schematic1-trans.sim ] 
 
@@ -93,19 +170,19 @@ C_C6         0 N04870  20000u
 
 
 
-               D1N4148         D1N4744A        X_U3.dx         X_U1.dx         
-          IS    2.682000E-09    4.997600E-24  800.000000E-18  800.000000E-18 
-           N    1.836           1.6405                                       
-         ISR    1.565000E-09    2.247333E-06                                 
-          NR                    2.89714                                      
-         IKF     .04417                                                      
-          BV  100              15.048                                        
-         IBV  100.000000E-06     .1296                                       
-          RS     .5664           .21797         1               1            
-          TT   11.540000E-09  605.000000E-09                                 
-         CJO    4.000000E-12  260.000000E-12                                 
-          VJ     .5              .46328                                      
-           M     .3333           .2466                                       
+               D1N4744A        D1N4148         X_U3.dx         X_U1.dx         
+          IS    4.997600E-24    2.682000E-09  800.000000E-18  800.000000E-18 
+           N    1.6405          1.836                                        
+         ISR    2.247333E-06    1.565000E-09                                 
+          NR    2.89714                                                      
+         IKF                     .04417                                      
+          BV   15.048         100                                            
+         IBV     .1296        100.000000E-06                                 
+          RS     .21797          .5664          1               1            
+          TT  605.000000E-09   11.540000E-09                                 
+         CJO  260.000000E-12    4.000000E-12                                 
+          VJ     .46328          .5                                          
+           M     .2466           .3333                                       
 
 
                X_U2.dx         X_U4.dx         
@@ -113,7 +190,7 @@ C_C6         0 N04870  20000u
           RS    1               1            
 
 
-**** 03/13/18 15:05:22 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+**** 05/03/18 20:55:52 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
 
  ** Profile: "SCHEMATIC1-Trans"  [ D:\Radio\Devices\PS3604L\OrCad\rectifier\rectifier-schematic1-trans.sim ] 
 
@@ -182,7 +259,7 @@ C_C6         0 N04870  20000u
            D     .52             .87             .87             .87         
 
 
-**** 03/13/18 15:05:22 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+**** 05/03/18 20:55:52 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
 
  ** Profile: "SCHEMATIC1-Trans"  [ D:\Radio\Devices\PS3604L\OrCad\rectifier\rectifier-schematic1-trans.sim ] 
 
@@ -235,7 +312,7 @@ C_C6         0 N04870  20000u
        XPART    0            
 
 
-**** 03/13/18 15:05:22 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
+**** 05/03/18 20:55:52 ********* PSpice 9.2 (Mar 2000) ******** ID# 1 ********
 
  ** Profile: "SCHEMATIC1-Trans"  [ D:\Radio\Devices\PS3604L\OrCad\rectifier\rectifier-schematic1-trans.sim ] 
 
@@ -309,5 +386,5 @@ C_C6         0 N04870  20000u
 
           JOB CONCLUDED
 
-          TOTAL JOB TIME             .66
+          TOTAL JOB TIME             .53
 

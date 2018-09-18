@@ -6,11 +6,8 @@
 *Libraries: 
 * Local Libraries :
 * From [PSPICE NETLIST] section of c:\programfiles\Orcad\PSpice\PSpice.ini file:
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\opamp.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\ediode.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\pwrmos.lib" 
-.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\diode.lib" 
+.lib "C:\ProgramFiles\Orcad\Capture\Library\PSpice\nom.lib" 
+.inc "C:\ProgramFiles\Orcad\Capture\Library\PSpice\nom.lib" 
 
 *Analysis directives: 
 .TRAN  0 40ms 0 50us 
