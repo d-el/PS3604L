@@ -1,6 +1,6 @@
 [submodule "Firmware/Panel"]
 	path = Firmware/Panel
-	url = https://d_el@bitbucket.org/d_el/ps3604l_panel
+	url = https://github.com/d-el/PS3604L_Panel.git
 [submodule "Firmware/Regulator"]
 	path = Firmware/Regulator
-	url = https://d_el@bitbucket.org/d_el/ps3604l_regulator
+	url = https://github.com/d-el/PS3604L_Regulator.git

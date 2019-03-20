@@ -15,13 +15,13 @@ LifeCycleDefinitionGUID=
 RevisionNamingSchemeGUID=
 
 [OutputGroup1]
-Name=PS3604LR.OutJob
+Name=
 Description=
 TargetOutputMedium=For_Manufacturer
 VariantName=[No Variations]
 VariantScope=0
 CurrentConfigurationName=
-TargetPrinter=pos58(copy of 1)
+TargetPrinter=Microsoft Print to PDF
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=0
 OutputMedium1=Print Job
 OutputMedium1_Type=Printer
@@ -153,10 +153,10 @@ OutputPathMediaValue2=Manufacture
 OutputPathOutputer2=[Output Type]
 OutputPathOutputerPrefix2=
 OutputPathOutputerValue2=
-OutputFileName2=PS3604LR.pdf
+OutputFileName2=PS3604LR.PDF
 OutputFileNameMulti2=
 UseOutputNameForMulti2=0
-OutputFileNameSpecial2=
+OutputFileNameSpecial2==ProjectName
 OpenOutput2=1
 PromptOverwrite2=1
 PublishMethod2=0

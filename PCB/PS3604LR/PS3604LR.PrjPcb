@@ -28,7 +28,7 @@ DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
-OutputPath=Project Outputs for PS3604LR
+OutputPath=
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
@@ -224,7 +224,7 @@ SCH_HasExpandLogicalToPhysicalSheets=-1
 SaveSettingsToOutJob=-1
 
 [Generic_EDE]
-OutputDir=Project Outputs for PS3604LR
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -1230,8 +1230,8 @@ ProjectToDo3=Name=Добавить фильтр на вход INA226|UID=FCIOOPFY
 
 [NetInfos]
 Net1=NetName=+3.3V|NetColor=$006E6EFF
-Net2=NetName=0V|NetColor=$006EFF6E
-Net3=NetName=+3.3AV|NetColor=$00FF6EFF
+Net2=NetName=+3.3AV|NetColor=$00FF6EFF
+Net3=NetName=0V|NetColor=$006EFF6E
 
 [Comparison Options]
 ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=-1|Confirm=-1|UseName=-1|InclAllRules=0
