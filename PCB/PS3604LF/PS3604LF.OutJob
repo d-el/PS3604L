@@ -15,7 +15,7 @@ LifeCycleDefinitionGUID=
 RevisionNamingSchemeGUID=
 
 [OutputGroup1]
-Name=PS3604LF.OutJob
+Name=
 Description=
 TargetOutputMedium=For_Manufacturer
 VariantName=[No Variations]
@@ -177,7 +177,7 @@ ReleaseManaged3=1
 OutputBasePath3=Project Outputs for PS3604LF
 OutputPathMedia3=
 OutputPathMediaValue3==ProjectName
-OutputPathOutputer3=[Output Name]
+OutputPathOutputer3=[Output Type]
 OutputPathOutputerPrefix3=
 OutputPathOutputerValue3=
 OutputFileName3=
