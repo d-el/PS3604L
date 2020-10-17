@@ -105,10 +105,6 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[GeneratedDocument1]
-DocumentPath=Project Outputs for PS3604LRCF\Design Rule Check - PS3604LRCF.html
-DItemRevisionGUID=
-
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
@@ -1196,11 +1192,11 @@ ComponentIsDeviceSheet8=0
 
 [NetInfos]
 Net1=NetName=REF1|NetColor=$00FF6E6E
-Net2=NetName=V3|NetColor=$00FF6EFF
+Net2=NetName=REF4|NetColor=$006E6EFF
 Net3=NetName=V1|NetColor=$006EFF6E
 Net4=NetName=REF5|NetColor=clYellow
 Net5=NetName=REF2|NetColor=$00FFFF6E
-Net6=NetName=REF4|NetColor=$006E6EFF
+Net6=NetName=V3|NetColor=$00FF6EFF
 
 [Comparison Options]
 ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=-1|Confirm=-1|UseName=-1|InclAllRules=0
