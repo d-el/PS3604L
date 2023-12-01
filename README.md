@@ -5,7 +5,7 @@ PS3604 is low noise fast response linear laboratory power supply.
 ## Overview
 
 - dimension 150 x 77 x 268 mm
-- weight
+- weight 3.850 kg
 - 0-36V, step 0.01V
 - 0-4A, step 0.001A
 - CC/CV/Break_on_current
