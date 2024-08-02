@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Measure Current–voltage characteristic
+# version 0.1
 
 from ps3604l import Ps3604l
 import argparse
@@ -8,17 +9,17 @@ import csv
 import subprocess
 
 # Settings
-Rw = 0.022 # [Ohm] Wires resistance
+Rw = 0.000 # [Ohm] Wires resistance
 Vlimit = 6 # [V]
 Istart = 0.01 # [A]
 Iend = 1.2 # [A]
 
-Ithreshold = 0.15 # [A]
+Ithreshold = 0.05 # [A]
 
 Istep1 = 0.001 # [A]
-Time1 = 0.5 # [s]
+Time1 = 1 # [s]
 
-Istep2 = 0.02 # [A]
+Istep2 = 0.05 # [A]
 Time2 = 0.3 # [s]
 
 # SetUp

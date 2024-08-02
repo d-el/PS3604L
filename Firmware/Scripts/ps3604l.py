@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# API and simple console program
+# version 0.1
 
 from pymodbus import (
     ExceptionResponse,
@@ -26,7 +28,8 @@ class Ps3604l():
 			reconnect_delay_max=9)
 		print('Connection to {}:{}'.format(ip, port), end=' ')
 		r = self.client.read_holding_registers(0x0000, 3, slave=self.slaveaddr)
-		print('Regulator version {major}.{minor}.{patch}'.format(major=r.registers[0], minor=r.registers[1], patch=r.registers[2]))
+		print('Regulator version {major}.{minor}.{patch}, sn {sn}'.format(
+			major=r.registers[0], minor=r.registers[1], patch=r.registers[2], sn=self.__read_u32(0x0004)))
 	
 	def __del__(self):
 		self.client.close()
@@ -70,6 +73,12 @@ class Ps3604l():
 		result = self.client.read_holding_registers(reg, 1,  slave=self.slaveaddr)
 		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
 		return decoder.decode_16bit_int()
+	
+	def __write_i16(self, reg):
+		builder = payload.BinaryPayloadBuilder(byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
+		builder.add_16bit_int(val)
+		pay = builder.build()
+		self.client.write_registers(reg, pay, skip_encode=True, slave=self.slaveaddr)
 
 	def __write_u32(self, reg, val):
 		builder = payload.BinaryPayloadBuilder(byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
@@ -81,17 +90,30 @@ class Ps3604l():
 		result = self.client.read_holding_registers(reg, 2,  slave=self.slaveaddr)
 		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
 		return decoder.decode_32bit_uint()
+		
+	def __write_i32(self, reg, val):
+		builder = payload.BinaryPayloadBuilder(byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
+		builder.add_32bit_int(val)
+		pay = builder.build()
+		self.client.write_registers(reg, pay, skip_encode=True, slave=self.slaveaddr)
 
-	target_voltage = property(lambda self: self.__read_u32(0x0100)/1000000.0, lambda self, val: self.__write_u32(0x0100, int(float(val)*1000000)))
-	target_current = property(lambda self: self.__read_u32(0x0102), lambda self, val: self.__write_u32(0x0102, int(float(val)*1000000)))
-	target_mode = property(lambda self: self.Mode(self.__read_u16(0x0106)), lambda self, val: self.__write_u16(0x0106, val.value))
-	target_time = property(lambda self: self.__read_u32(0x0107)/1000.0, lambda self, val: self.__write_u32(0x0107, int(val*1000.0)))
-	target_enable = property(lambda self: self.__read_u16(0x0109), lambda self, val: self.__write_u16(0x0109, val))
+	def __read_i32(self, reg):
+		result = self.client.read_holding_registers(reg, 2,  slave=self.slaveaddr)
+		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
+		return decoder.decode_32bit_int()
+
+	target_voltage = property(lambda self: self.__read_i32(0x0100)/1000000.0, lambda self, val: self.__write_i32(0x0100, int(float(val)*1000000)))
+	target_current = property(lambda self: self.__read_i32(0x0102), lambda self, val: self.__write_i32(0x0102, int(float(val)*1000000)))
+	target_mode = property(lambda self: self.Mode(self.__read_u16(0x0108)), lambda self, val: self.__write_u16(0x0108, val.value))
+	target_time = property(lambda self: self.__read_u32(0x0109)/1000.0, lambda self, val: self.__write_u32(0x0109, int(val*1000.0)))
+	target_enable = property(lambda self: self.__read_u16(0x010B), lambda self, val: self.__write_u16(0x010B, val))
 	
-	state_voltage = property(lambda self: self.__read_u32(0x0200)/1000000.0, None)
-	state_current = property(lambda self: self.__read_u32(0x0202)/1000000.0, None)
+	state_voltage = property(lambda self: self.__read_i32(0x0200)/1000000.0, None)
+	state_current = property(lambda self: self.__read_i32(0x0202)/1000000.0, None)
+	state_power = property(lambda self: self.__read_i32(0x0204)/1000000.0, None)
+	state_resistance = property(lambda self: self.__read_i32(0x0206)/1000000.0, None)
 	state_time = property(lambda self: self.__read_u32(0x0208), None)
-	state_input_voltage = property(lambda self: self.__read_u32(0x020C)/1000000.0, None)
+	state_input_voltage = property(lambda self: self.__read_i32(0x020C)/1000000.0, None)
 	state_temperature = property(lambda self: self.__read_i16(0x020E)/10.0, None)
 	state_status = property(lambda self: self.Status(self.__read_u16(0x020F)), None)
 	state_disablecause = property(lambda self: self.Disablecause(self.__read_u16(0x0210)), None)
@@ -103,13 +125,17 @@ class Ps3604l():
 		result = self.client.read_holding_registers(0x0200, 21,  slave=self.slaveaddr)
 		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
 		s = self.State()
-		s.voltage = decoder.decode_32bit_uint()/1000000.0
-		s.current = decoder.decode_32bit_uint()/1000000.0
+		s.voltage = decoder.decode_32bit_int()/1000000.0
+		s.current = decoder.decode_32bit_int()/1000000.0
 		s.power = decoder.decode_32bit_uint()/1000000.0
-		s.resistance = decoder.decode_32bit_uint()/1000.0
+		uresistance = decoder.decode_32bit_int()
+		if uresistance == -1:
+			s.resistance = float("NaN")
+		else:
+			s.resistance = uresistance/10000.0
 		s.time = decoder.decode_32bit_uint()/1000.0
 		s.capacity = decoder.decode_32bit_uint()/1000.0
-		s.input_voltage = decoder.decode_32bit_uint()/1000000.0
+		s.input_voltage = decoder.decode_32bit_int()/1000000.0
 		s.temperature = decoder.decode_16bit_int()/10.0
 		s.status = self.Status(decoder.decode_16bit_uint())
 		s.disablecause = self.Disablecause(decoder.decode_16bit_uint())
@@ -139,7 +165,7 @@ if __name__ == '__main__':
 	while True:
 		try:
 			s = ps.getState()
-			print('| voltage: {:6.3f}V | current: {:5.3f}A | power: {:6.3f}W | resistance: {:8.2f}Ω | capacity: {:12.3f}Ah | {:35} |'.format(
+			print('| voltage: {:6.3f}V | current: {:9.6f}A | power: {:6.6f}W | resistance: {:10.3f}Ω | capacity: {:12.3f}Ah | {:35} |'.format(
 				s.voltage,
 				s.current,
 				s.power,
@@ -149,7 +175,7 @@ if __name__ == '__main__':
 				+ ' '*20)
 			
 			lineUp='\x1B[F'
-			print('| enable: {:8} | input: {:7.1f}V | t: {:8.1f} °C | time: {:14.3f}s | {:24} | {:35} |'.format(
+			print('| enable: {:8} | input: {:11.1f}V | t: {:10.1f} °C | time: {:16.3f}s | {:24} | {:35} |'.format(
 				ps.target_enable,
 				s.input_voltage,
 				s.temperature,
