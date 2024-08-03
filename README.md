@@ -6,7 +6,7 @@ The PS3604L is a 144 Watt, high performance dc power supply with output current 
 Combination of bench-top and system features in these dc source.
 For more photos to /Photo.
 
-<img src="Photo/IMG_4745.JPG" style="zoom:20%;" />
+<img src="Photo/face.jpg" style="zoom:25%;" />
 
 ### Convenient bench-top features
 
