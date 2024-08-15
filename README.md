@@ -32,15 +32,15 @@ Unless otherwise noted, specifications apply when measured after a 30-minute war
 
 ### Performance Specifications
 
-| Parameter                                                    |                                                           |                              |
-| :----------------------------------------------------------- | --------------------------------------------------------: | :--------------------------: |
-| **Output Ratings**                                           |                                    Voltage:<br />Current: |    0 – 36 V<br />0 – 4 A     |
-| **Programming Accuracy**<br/>(@ 25°C ±5°C)                   |                                    Voltage:<br />Current: |        10 mV<br />1mA        |
-| **DC Measurement Accuracy**<br />(@ 25°C ±5°C)               | Voltage:<br />Current 0 – 1 mA:<br />Current 0.001 – 4 A: | 10 mV<br />0.01 mA<br />1 mA |
-| **Ripple and Noise**                                         |                                                       TBD |             TBD              |
-| **Load Regulation**                                          |                                                       TBD |             TBD              |
-| **Line Regulation**<br/>(change in output voltage<br/>or current for any line<br/>change within ratings) |                                                           |                              |
-| **Transient Response Time**<br />*1                          |                                                       TBD |             TBD              |
+| Parameter                                                    |                                                           |                             |
+| :----------------------------------------------------------- | --------------------------------------------------------: | :-------------------------: |
+| **Output Ratings**                                           |                                    Voltage:<br />Current: |    0 – 36 V<br />0 – 4 A    |
+| **Programming Accuracy**<br/>(@ 25°C ±5°C)                   |                                    Voltage:<br />Current: |        5 mV<br />2mA        |
+| **DC Measurement Accuracy**<br />(@ 25°C ±5°C)               | Voltage:<br />Current 0 – 1 mA:<br />Current 0.001 – 4 A: | 5 mV<br />0.01 mA<br />2 mA |
+| **Ripple and Noise**                                         |                                                       TBD |             TBD             |
+| **Load Regulation**                                          |                                                       TBD |             TBD             |
+| **Line Regulation**<br/>(change in output voltage<br/>or current for any line<br/>change within ratings) |                                                       TBD |             TBD             |
+| **Transient Response Time**<br />*1                          |                                                           |           < 50 μs           |
 
 1. For the output voltage to recover to its previous level within 0.1% of the voltage rating of the unit or 20 millivolts following a
    change in load current of up to 50% of the output current rating
@@ -51,7 +51,7 @@ Unless otherwise noted, specifications apply when measured after a 30-minute war
 | ------------------------------------------------------------ | -----------------------------------------------------------: | :-------------------------------------------: |
 | **Input Rating**<br/>(at full load )                         |                                               230 Vac mains: | 230 Vac nominal, 50/60 Hz, 0.85A, 200 VA max. |
 | **Average Programming<br/>Resolution**                       | Voltage (panel):<br />Voltage (remote)<br />Current (panel):<br />Current (remote) |   10 mV<br<br />1 mV<br />1 mA<br />0.1 mA    |
-| **Output Voltage Rise/Fall Time**<br/>(for a change from 10% to 90% or<br/>90% to 10% of the total excursion) |                                                          TBD |                      TBD                      |
+| **Output Voltage Rise/Fall Time**<br/>(for a change from 10% to 90% or<br/>90% to 10% of the total excursion) |                                               Rise<br />Fall |             < 80 μs<br />< 10 μs              |
 | **Command Processing Time**                                  |                                                              |                     10 ms                     |
 | **Isolation to Ground**<br/>(Maximum from either<br/>output terminal to chassis) |                                                              |                    200 Vdc                    |
 | **Dimensions**                                               |                              Height:<br />Width:<br />Depth: |         78 mm<br />158 mm<br />268 mm         |
