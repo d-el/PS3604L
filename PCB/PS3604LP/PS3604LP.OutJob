@@ -15,7 +15,7 @@ LifeCycleDefinitionGUID=
 RevisionNamingSchemeGUID=
 
 [OutputGroup1]
-Name=PS3604LD.OutJob
+Name=PS3604LP.OutJob
 Description=
 TargetOutputMedium=For_Manufacturer
 VariantName=[No Variations]
@@ -57,18 +57,16 @@ OutputDefault2=0
 PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration2_Name1=ColumnNameFormat
 Configuration2_Item1=CaptionAsName
-Configuration2_Name2=Filter
-Configuration2_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
-Configuration2_Name3=General
-Configuration2_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1084|FormHeight=657|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
-Configuration2_Name4=GroupOrder
-Configuration2_Item4=Part Number=True
-Configuration2_Name5=OutputConfigurationParameter1
-Configuration2_Item5=??
-Configuration2_Name6=SortOrder
-Configuration2_Item6=Description=Up
-Configuration2_Name7=VisibleOrder
-Configuration2_Item7=Designator=123|Part Description=290|Footprint=123|Part Number=172|Quantity=55
+Configuration2_Name2=General
+Configuration2_Item2=OpenExported=False|AddToProject=False|ReportBOMViolationsInMessages=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePcbData=False|IncludeVaultData=False|IncludeCloudData=False|IncludeDocumentData=True|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|TemplateVaultGuid=|TemplateItemGuid=|TemplateRevisionGuid=|BatchMode=5|FormWidth=1084|FormHeight=657|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|SolutionsPerItem=1|SuppliersPerSolution=1|ViewType=0|UseDirectApi=False|BomSetName=
+Configuration2_Name3=GroupOrder
+Configuration2_Item3=Part Number=True
+Configuration2_Name4=OutputConfigurationParameter1
+Configuration2_Item4=??
+Configuration2_Name5=VisibleOrder
+Configuration2_Item5=Designator=95|Comment=100|Footprint=152|Part Number=184|Part Description=290|Quantity=55
+Configuration2_Name6=VisibleOrder_Flat
+Configuration2_Item6=Designator=95|Comment=100|Footprint=152|Part Number=184|Part Description=290|Quantity=55
 OutputType3=PCB 3D Print
 OutputName3=PCB 3D Print Top
 OutputCategory3=Documentation
@@ -147,7 +145,7 @@ PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintS
 [PublishSettings]
 OutputFilePath2=D:\Radio\Devices\PS3604L\PCB\PS3604LD\Project Outputs for PS3604LD\PS3604LD.PDF
 ReleaseManaged2=1
-OutputBasePath2=Project Outputs for PS3604LD
+OutputBasePath2=Project Outputs for PS3604LP
 OutputPathMedia2=
 OutputPathMediaValue2=Manufacture
 OutputPathOutputer2=[Output Type]
@@ -174,7 +172,7 @@ PDFACompliance2=Disabled
 PDFVersion2=Default
 OutputFilePath3=D:\Radio\Devices\PS3604L\PCB\PS3604LD\Project Outputs for PS3604LD\
 ReleaseManaged3=1
-OutputBasePath3=Project Outputs for PS3604LD
+OutputBasePath3=Project Outputs for PS3604LP
 OutputPathMedia3=
 OutputPathMediaValue3=Manufacture
 OutputPathOutputer3=[Output Type]
