@@ -45,6 +45,10 @@
     (Folder "Include Files"))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
+    (AD8421
+      (FullPartName "AD8421.Normal")
+      (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\OPAMP.OLB")
+      (DeviceIndex "0"))
     (AD8628
       (FullPartName "AD8628.Normal")
       (LibraryName "C:\PROGRAMFILES\ORCAD\CAPTURE\LIBRARY\PSPICE\OPAMP.OLB")
@@ -140,38 +144,27 @@
     (C
       (FullPartName "C.Normal")
       (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
-      (DeviceIndex "0"))
-    (L
-      (FullPartName "L.Normal")
-      (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
       (DeviceIndex "0")))
   (LastUsedLibraryBrowseDirectory
      "C:\ProgramFiles\Orcad\Capture\Library\PSpice")
   (GlobalState
     (FileView
       (Path "Design Resources")
-      (Path "Design Resources"
-         "D:\Radio\Devices\PS3604L\OrCad\regulator\outamp.dsn")
-      (Path "Design Resources"
-         "D:\Radio\Devices\PS3604L\OrCad\regulator\outamp.dsn" "SCHEMATIC1")
       (Path "Design Resources" "Library")
       (Path "Outputs")
       (Path "PSpice Resources")
-      (Path "PSpice Resources" "Simulation Profiles")
-      (Select "Design Resources"
-         "D:\Radio\Devices\PS3604L\OrCad\regulator\outamp.dsn" "SCHEMATIC1"
-         "PAGE1"))
+      (Path "PSpice Resources" "Simulation Profiles"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 2 1 0 704 -8 -31 83 799 27 666"))
+        (Placement "44 0 1 0 704 -8 -31 83 799 27 666"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 2 3 -1 -1 -8 -31 52 1289 52 556")
-        (Scroll "0 60")
+        (Placement "44 0 1 -1 -1 -8 -31 156 1393 156 660")
+        (Scroll "71 150")
         (Zoom "100")
         (Occurrence "/"))
       (Path "D:\RADIO\DEVICES\PS3604L\ORCAD\REGULATOR\OUTAMP.DSN")
