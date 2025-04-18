@@ -52,7 +52,7 @@ calibrations = [
 	['v4_dac'			,"lsb"		,'int32_t'	,0x0354],
 	['v5_dac'			,"lsb"		,'int32_t'	,0x0355],
 	
-	['i0_adc'			,"lsb"		,'uint32_t'	,0x0360],
+	['i0_adc'			,"lsb"		,'int32_t'	,0x0360],
 	['i1_adc'			,"lsb"		,'int32_t'	,0x0361],
 	['i2_adc'			,"lsb"		,'int32_t'	,0x0362],
 	['i3_adc'			,"lsb"		,'int32_t'	,0x0363],
@@ -66,13 +66,6 @@ calibrations = [
 	['i4_dac'			,"lsb"		,'int32_t'	,0x0374],
 	['i5_dac'			,"lsb"		,'int32_t'	,0x0375],
 	
-	['iext0_adc'		    ,"lsb"		,'int32_t'	,0x0380],
-	['iext1_adc'		    ,"lsb"		,'int32_t'	,0x0382],
-	['iext2_adc'		    ,"lsb"		,'int32_t'	,0x0384],
-	['iext3_adc'		    ,"lsb"		,'int32_t'	,0x0386],
-	['iext4_adc'		    ,"lsb"		,'int32_t'	,0x0388],
-	['iext5_adc'		    ,"lsb"		,'int32_t'	,0x038A],
-	
 	['micro_iext0_adc'	,"lsb"		,'int32_t'	,0x0390],
 	['micro_iext1_adc'	,"lsb"		,'int32_t'	,0x0392],
 	['micro_iext2_adc'	,"lsb"		,'int32_t'	,0x0394]
@@ -81,6 +74,7 @@ calibrations = [
 if args.sn:
 	print('write serial number: {}'.format(args.sn))
 	ps._Ps3604l__write_u32(0x0004, args.sn)
+	ps.target_save_settings = 1
 
 if args.rfilename or (args.rfilename == None and args.wfilename == None):
 	file = None
