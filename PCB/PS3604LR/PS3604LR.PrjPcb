@@ -183,67 +183,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for PS3604LR\BOM\Bill of Materials-PS3604LR.xlsx
-DItemRevisionGUID=
-
-[GeneratedDocument2]
 DocumentPath=Project Outputs for PS3604LR\Design Rule Check - PS3604LR.html
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs for PS3604LR\NC Drill\PS3604LR.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GD1
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GKO
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=Project Outputs for PS3604LR\NC Drill\PS3604LR.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.REP
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=Project Outputs for PS3604LR\Gerber\PS3604LR.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=Project Outputs for PS3604LR\NC Drill\PS3604LR.TXT
 DItemRevisionGUID=
 
 [Configuration1]
@@ -640,6 +580,18 @@ OutputName5=Component Cross Reference Report
 OutputDocumentPath5=
 OutputVariantName5=[No Variations]
 OutputDefault5=0
+Configuration5_Name1=ColumnNameFormat
+Configuration5_Item1=CaptionAsName
+Configuration5_Name2=ForceUpdateSettings
+Configuration5_Item2=False
+Configuration5_Name3=General
+Configuration5_Item3=OpenExported=False|AddToProject=False|ReportBOMViolationsInMessages=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePcbData=False|IncludeVaultData=False|IncludeCloudData=False|IncludeDocumentData=True|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|TemplateVaultGuid=|TemplateItemGuid=|TemplateRevisionGuid=|BatchMode=5|FormWidth=1200|FormHeight=710|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=USD|SolutionsPerItem=1|SuppliersPerSolution=1|ViewType=0|UseDirectApi=False|BomSetName=
+Configuration5_Name4=GroupOrder
+Configuration5_Item4=Document=True
+Configuration5_Name5=SortOrder
+Configuration5_Item5=Document=Up|Designator=Up
+Configuration5_Name6=VisibleOrder
+Configuration5_Item6=Comment=120|Description=120|Designator=120|Footprint=120|LibRef=120|Quantity=120
 OutputType6=ReportHierarchy
 OutputName6=Report Project Hierarchy
 OutputDocumentPath6=
@@ -1271,10 +1223,12 @@ ProjectToDo2=Name=U1 заменить на AD8608ARU|UID=FIYGBTDI
 ProjectToDo3=Name=Добавить фильтр на вход INA226|UID=FCIOOPFY
 
 [NetInfos]
-Net1=NetName=+3.3AV|NetColor=$00FF6EFF
-Net2=NetName=+3.3V|NetColor=$006E6EFF
-Net3=NetName=+5V|NetColor=$000099FF
-Net4=NetName=0V|NetColor=$006EFF6E
+Net1=NetName=+12V|NetColor=clRed
+Net2=NetName=+3.3AV|NetColor=$00FF6EFF
+Net3=NetName=+3.3V|NetColor=$006E6EFF
+Net4=NetName=+5V|NetColor=$000099FF
+Net5=NetName=0V|NetColor=$006EFF6E
+Net6=NetName=-4.5V|NetColor=clBlue
 
 [Comparison Options]
 ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=-1|UseName=-1|InclAllRules=0
