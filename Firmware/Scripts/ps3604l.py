@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 # API and simple console program
-# version 0.1
+# version 0.2
 
 from pymodbus import (
-    ExceptionResponse,
-    Framer,
+    FramerType,
     ModbusException,
+    ExceptionResponse,
+    framer,
     pymodbus_apply_logging_config,
     payload,
     constants,
     client
 )
+from pymodbus.pdu import FileRecord
 import argparse
 import time
 import datetime
 import enum
+from pathlib import Path
+from tqdm import tqdm
 
 class Ps3604l():
 	slaveaddr = 1
@@ -23,13 +27,12 @@ class Ps3604l():
 		self.client = client.ModbusTcpClient(ip, port=port,
 			timeout=3,
 			retries=3,
-			retry_on_empty=True,
+			#retry_on_empty=True,
 			reconnect_delay=1,
 			reconnect_delay_max=9)
 		print('Connection to {}:{}'.format(ip, port), end=' ')
-		r = self.client.read_holding_registers(0x0000, 3, slave=self.slaveaddr)
-		print('Regulator version {major}.{minor}.{patch}, sn {sn}'.format(
-			major=r.registers[0], minor=r.registers[1], patch=r.registers[2], sn=self.__read_u32(0x0004)))
+		major, minor, patch = self.readVersion()
+		print(f'Regulator version {major}.{minor}.{patch}, sn {self.sn}')
 	
 	def __del__(self):
 		self.client.close()
@@ -50,6 +53,7 @@ class Ps3604l():
 		notCalibrated = 32
 		limitation = 64
 		externaIAdc = 128
+		cRangeHi = 256
 	
 	class Disablecause(enum.Enum):
 		none = 0
@@ -66,84 +70,127 @@ class Ps3604l():
 		self.client.write_register(reg, val)
 		
 	def __read_u16(self, reg):
-		r = self.client.read_holding_registers(reg, 1, slave=self.slaveaddr)
+		r = self.client.read_holding_registers(reg, count=1, slave=self.slaveaddr)
 		return r.registers[0]
 	
 	def __read_i16(self, reg):
-		result = self.client.read_holding_registers(reg, 1,  slave=self.slaveaddr)
-		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
-		return decoder.decode_16bit_int()
+		result = self.client.read_holding_registers(reg, count=1,  slave=self.slaveaddr)
+		return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.INT16, word_order='little')
 	
 	def __write_i16(self, reg):
-		builder = payload.BinaryPayloadBuilder(byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
-		builder.add_16bit_int(val)
-		pay = builder.build()
+		pay = self.client.convert_to_registers(val, data_type=self.client.DATATYPE.INT16)
 		self.client.write_registers(reg, pay, skip_encode=True, slave=self.slaveaddr)
 
 	def __write_u32(self, reg, val):
-		builder = payload.BinaryPayloadBuilder(byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
-		builder.add_32bit_uint(val)
-		pay = builder.build()
-		self.client.write_registers(reg, pay, skip_encode=True, slave=self.slaveaddr)
+		pay = self.client.convert_to_registers(val, data_type=self.client.DATATYPE.UINT32, word_order='little')
+		self.client.write_registers(reg, pay, slave=self.slaveaddr)
 		
 	def __read_u32(self, reg):
-		result = self.client.read_holding_registers(reg, 2,  slave=self.slaveaddr)
-		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
-		return decoder.decode_32bit_uint()
+		result = self.client.read_holding_registers(reg, count=2, slave=self.slaveaddr)
+		return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.UINT32, word_order='little')
 		
 	def __write_i32(self, reg, val):
-		builder = payload.BinaryPayloadBuilder(byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
-		builder.add_32bit_int(val)
-		pay = builder.build()
-		self.client.write_registers(reg, pay, skip_encode=True, slave=self.slaveaddr)
+		pay = self.client.convert_to_registers(val, data_type=self.client.DATATYPE.INT32, word_order='little')
+		self.client.write_registers(reg, pay, slave=self.slaveaddr)
 
 	def __read_i32(self, reg):
-		result = self.client.read_holding_registers(reg, 2,  slave=self.slaveaddr)
-		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
-		return decoder.decode_32bit_int()
+		result = self.client.read_holding_registers(reg, count=2,  slave=self.slaveaddr)
+		return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.INT32, word_order='little')
+
+	def readVersion(self):
+		r = self.client.read_holding_registers(0x0000, count=3, slave=self.slaveaddr)
+		major=r.registers[0]
+		minor=r.registers[1]
+		patch=r.registers[2]
+		return major, minor, patch
+
+	sn = property(lambda self: self.__read_i32(0x0004), None)
 
 	target_voltage = property(lambda self: self.__read_i32(0x0100)/1000000.0, lambda self, val: self.__write_i32(0x0100, int(float(val)*1000000)))
 	target_current = property(lambda self: self.__read_i32(0x0102), lambda self, val: self.__write_i32(0x0102, int(float(val)*1000000)))
 	target_mode = property(lambda self: self.Mode(self.__read_u16(0x0108)), lambda self, val: self.__write_u16(0x0108, val.value))
 	target_time = property(lambda self: self.__read_u32(0x0109)/1000.0, lambda self, val: self.__write_u32(0x0109, int(val*1000.0)))
 	target_enable = property(lambda self: self.__read_u16(0x010B), lambda self, val: self.__write_u16(0x010B, val))
+	target_save_settings = property(lambda self: self.__read_u16(0x010F), lambda self, val: self.__write_u16(0x010F, val))
+	target_crange = property(lambda self: self.__read_u16(0x0110), lambda self, val: self.__write_u16(0x0110, val))
+	target_reboot = property(lambda self: self.__read_u16(0x0111), lambda self, val: self.__write_u16(0x0111, val))
 	
 	state_voltage = property(lambda self: self.__read_i32(0x0200)/1000000.0, None)
 	state_current = property(lambda self: self.__read_i32(0x0202)/1000000.0, None)
 	state_power = property(lambda self: self.__read_i32(0x0204)/1000000.0, None)
 	state_resistance = property(lambda self: self.__read_i32(0x0206)/1000000.0, None)
 	state_time = property(lambda self: self.__read_u32(0x0208), None)
+	state_capacity = property(lambda self: self.__read_u32(0x020A), None)
 	state_input_voltage = property(lambda self: self.__read_i32(0x020C)/1000000.0, None)
-	state_temperature = property(lambda self: self.__read_i16(0x020E)/10.0, None)
-	state_status = property(lambda self: self.Status(self.__read_u16(0x020F)), None)
-	state_disablecause = property(lambda self: self.Disablecause(self.__read_u16(0x0210)), None)
+	state_temp_heatsink = property(lambda self: self.__read_i16(0x020E)/10.0, None)
+	state_temp_shunt = property(lambda self: self.__read_i16(0x020F)/10.0, None)
+	state_temp_ref = property(lambda self: self.__read_i16(0x0210)/10.0, None)
+	state_status = property(lambda self: self.Status(self.__read_u16(0x0211)), None)
+	state_disablecause = property(lambda self: self.Disablecause(self.__read_u16(0x0212)), None)
 	
 	class State():
 		pass
 	
 	def getState(self):
-		result = self.client.read_holding_registers(0x0200, 21,  slave=self.slaveaddr)
-		decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
+		#result = self.client.read_holding_registers(0x0200, count=21,  slave=self.slaveaddr)
+		#decoder = payload.BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=constants.Endian.BIG, wordorder=constants.Endian.LITTLE)
+		#s = self.State()
+		#s.voltage = decoder.decode_32bit_int()/1000000.0
+		#s.current = decoder.decode_32bit_int()/1000000.0
+		#s.power = decoder.decode_32bit_uint()/1000000.0
+		#uresistance = decoder.decode_32bit_int()
+		#if uresistance == -1:
+		#	s.resistance = float("NaN")
+		#else:
+		#	s.resistance = uresistance/10000.0
+		#s.time = decoder.decode_32bit_uint()/1000.0
+		#s.capacity = decoder.decode_32bit_uint()/1000.0
+		#s.input_voltage = decoder.decode_32bit_int()/1000000.0
+		#s.state_temp_heatsink = decoder.decode_16bit_int()/10.0
+		#s.state_temp_shunt = decoder.decode_16bit_int()/10.0
+		#s.state_temp_ref = decoder.decode_16bit_int()/10.0
+		#s.status = self.Status(decoder.decode_16bit_uint())
+		#s.disablecause = self.Disablecause(decoder.decode_16bit_uint())
+		#s.vadc = decoder.decode_16bit_uint()
+		#s.iadc = decoder.decode_16bit_uint()
+		
 		s = self.State()
-		s.voltage = decoder.decode_32bit_int()/1000000.0
-		s.current = decoder.decode_32bit_int()/1000000.0
-		s.power = decoder.decode_32bit_uint()/1000000.0
-		uresistance = decoder.decode_32bit_int()
-		if uresistance == -1:
-			s.resistance = float("NaN")
-		else:
-			s.resistance = uresistance/10000.0
-		s.time = decoder.decode_32bit_uint()/1000.0
-		s.capacity = decoder.decode_32bit_uint()/1000.0
-		s.input_voltage = decoder.decode_32bit_int()/1000000.0
-		s.temperature = decoder.decode_16bit_int()/10.0
-		s.status = self.Status(decoder.decode_16bit_uint())
-		s.disablecause = self.Disablecause(decoder.decode_16bit_uint())
-		s.vadc = decoder.decode_16bit_uint()
-		s.iadc = decoder.decode_16bit_uint()
-		s.iexternaladc = decoder.decode_32bit_uint()
+		s.voltage = self.state_voltage
+		s.current = self.state_current
+		s.power = self.state_power
+		#uresistance = self.state_resistance
+		#if uresistance == -1:
+		#	s.resistance = float("NaN")
+		#else:
+		s.resistance = self.state_resistance
+		s.time = self.state_time / 1000.0
+		s.capacity = self.state_capacity
+		s.input_voltage = self.state_input_voltage
+		s.state_temp_heatsink = self.state_temp_heatsink
+		s.state_temp_shunt = self.state_temp_shunt
+		s.state_temp_ref = self.state_temp_ref
+		s.status = self.state_status
+		s.disablecause = self.state_disablecause
+		#s.vadc = self.
+		#s.iadc = self.
 		return s
 	
+	def updateRegulator(self, filePath):
+		data = Path(filePath).read_bytes()
+		fwLen = len(data)
+		pbar = tqdm(total=fwLen, desc="Loading...", unit='B')
+		for offset in range(0, fwLen, 128):
+			bytesToWrite = 128 if fwLen - offset >= 128 else fwLen - offset
+			pbar.update(bytesToWrite)
+			record_number = int(offset / 128)
+			record = FileRecord(file_number=1, record_number=record_number, record_data=data[offset : offset + bytesToWrite])
+			self.client.write_file_record([record], slave=self.slaveaddr)
+		pbar.close()
+		self.target_reboot = 1
+		print('wait for boot')
+		time.sleep(2)
+		major, minor, patch = self.readVersion()
+		print(f'New regulator version {major}.{minor}.{patch}')
 
 if __name__ == '__main__':
 	ap = argparse.ArgumentParser(description='API PS3604L')
@@ -151,10 +198,22 @@ if __name__ == '__main__':
 	ap.add_argument('-v', '--voltage', type=float, required=True, help='voltag')
 	ap.add_argument('-c', '--current', type=float, required=True, help='current')
 	ap.add_argument('-t', '--time', type=float, help='time')
+	ap.add_argument("-r", "--fwregulator", required=False, help="Firmware regulator file")
 	ap.add_argument('-w', help='Wait', action='store_true')
 	args = ap.parse_args()
 	
 	ps = Ps3604l(args.ipaddr)
+
+	if args.fwregulator:
+		print('Do you want write firmware to regulator? [y/n]')
+		resp = input()
+		if resp != 'y' and resp != 'Y':
+			print('Exit')
+			quit()
+		ps.updateRegulator(args.fwregulator)
+		time.sleep(1)
+		raise SystemExit
+
 	ps.target_voltage = args.voltage
 	ps.target_current = args.current
 	ps.target_mode = ps.Mode.limitation
@@ -165,25 +224,28 @@ if __name__ == '__main__':
 	while True:
 		try:
 			s = ps.getState()
-			print('| voltage: {:6.3f}V | current: {:9.6f}A | power: {:6.6f}W | resistance: {:10.3f}Ω | capacity: {:12.3f}Ah | {:35} |'.format(
+			lineUp='\x1B[F'
+			
+			print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:9.6f}W | resistance: {:10.3f}Ω |'.format(
 				s.voltage,
 				s.current,
 				s.power,
-				s.resistance,
-				s.capacity,
-				s.disablecause)
+				s.resistance)
 				+ ' '*20)
 			
-			lineUp='\x1B[F'
-			print('| enable: {:8} | input: {:11.1f}V | t: {:10.1f} °C | time: {:16.3f}s | {:24} | {:35} |'.format(
+			print('| enable: {:9} | vdc: {:13.1f}V | time: {:10.3f}s | capacity: {:11.3f}Ah |'.format(
 				ps.target_enable,
 				s.input_voltage,
-				s.temperature,
 				s.time,
-				ps.target_mode,
-				s.status)
-				+ ' '*20, end=lineUp)
-
+				s.capacity)
+				+ ' '*20, end='\n')
+				
+			print(f'| heatsink: {s.state_temp_heatsink:4.1f} °C | shunt: {s.state_temp_shunt:9.1f} °C | ref: {s.state_temp_ref:9.1f} °C | {ps.target_mode:23} |'
+				+ ' '*20, end='\n')
+				
+			print(f'| {s.disablecause:39} | {s.status:43} |'
+			    + ' '*20, end=lineUp + lineUp + lineUp)
+			
 			time.sleep(0.1)
 		
 		except KeyboardInterrupt:
@@ -192,3 +254,4 @@ if __name__ == '__main__':
 			ps.target_current = 0
 			print('\n\n')
 			break
+

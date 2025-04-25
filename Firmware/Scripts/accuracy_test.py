@@ -6,11 +6,11 @@ from ps3604l import Ps3604l
 import argparse
 import time
 import csv
-import serial
+import vxi11
 from pymeasure.adapters import SerialAdapter
 from pymeasure.instruments.hp import HP34401A
+import pyvisa
 import subprocess
-
 
 Vmin = 0
 Vth = 0
@@ -22,21 +22,21 @@ Time2 = 0
 
 # SetUp
 ap = argparse.ArgumentParser(description='accuracy_test')
-ap.add_argument("-i", "--ipaddr", required=False, help="IP address PS3604L", default="192.168.88.11")
+ap.add_argument("-i", "--ipaddr", required=False, help="IP address PS3604L")
+ap.add_argument("-b", "--gpib", help="GPIB adress")
 ap.add_argument("-n", "--name", required=True, help="Name")
-ap.add_argument("-s", "--serial", help="Serial port name")
-ap.add_argument('-c', "--current", help='Meas Voltage', action='store_true')
+ap.add_argument('-c', "--current", help='Meas current', action='store_true')
 ap.add_argument('-p', "--plot", help='Plot only', action='store_true')
 args = ap.parse_args()
 
 if args.current:
-	Vinit_v = 10	# [V]
+	Vinit_v = 10	    # [V]
 	Vinit_c = 0		# [A]
-	Vmin = 0.001	# [A]
+	Vmin = 0.001	    # [A]
 	Vth = 0.010		# [A]
 	Vmax = 4.0		# [A]
 	Vstep1 = 0.001	# [A]
-	Vstep2 = 0.1	# [A]
+	Vstep2 = 0.1    	# [A]
 	Time1 = 1		# [s]
 	Time2 = 1		# [s]
 	unit = 'A'
@@ -44,11 +44,11 @@ if args.current:
 else:
 	Vinit_v = 0		# [V]
 	Vinit_c = 1		# [A]
-	Vmin = 0.01		# [V]
+	Vmin = 0.1		# [V]
 	Vth = 0.5		# [V]
 	Vmax = 36		# [V]
-	Vstep1 = 0.1	# [V]
-	Vstep2 = 1		# [V]
+	Vstep1 = 0.1    	# [V]
+	Vstep2 = 0.1		# [V]
 	Time1 = 1		# [s]
 	Time2 = 1		# [s]
 	unit = 'V'
@@ -65,24 +65,9 @@ if not args.plot:
 	time.sleep(0.1)
 
 	# Open DMM
-	adapter = SerialAdapter(port=args.serial,
-		                    baudrate = 9600, # Recommend value
-		                    parity = serial.PARITY_NONE,
-		                    stopbits = serial.STOPBITS_TWO,
-		                    bytesize = serial.EIGHTBITS,
-		                    xonxoff=False,
-		                    dsrdtr=True,
-		                    rtscts=False,
-		                    write_termination="\n",
-		                    read_termination="\n",
-		                    )
-	dmm = HP34401A(adapter)
-	dmm.reset() # wait for reset
-	time.sleep(1)
+	dmm = HP34401A(vxi11.Instrument("192.168.88.116", f"gpib0,{args.gpib}"));
 	dmm.clear()
-	dmm.write('SYSTem:REMote')
-	dmm.status # for lush input buffers
-	print('dmm: {}, SCPI: {}, terminals: {}'.format(dmm.id, dmm.scpi_version, dmm.terminals_used))
+	print(f'dmm: {dmm.id}, terminals: {dmm.terminals_used}')
 	dmm.function_ = dmm_function
 
 	# Create CSV
