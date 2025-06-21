@@ -65,7 +65,7 @@ Controlled by STM32F337. Used SAR 16bit (18bit oversampling mode) for measure vo
 AD5663 16bit DAC use for current and voltage setpoint.
 Used fan speed proportional control for minimize sound noise.
 Module communicate by UART ModBus.
-Module [schematic](PCB/PS3604LR/Project%20Outputs%20for%20PS3604LR/PS3604LR.pdf).
+Module [schematic](PCB/PS3604LR/output/PS3604LR.pdf).
 <img src="Photo/regulator_top.jpg" style="zoom:20%;" />
 
 ## Front panel
