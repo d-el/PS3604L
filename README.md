@@ -61,10 +61,9 @@ Unless otherwise noted, specifications apply when measured after a 30-minute war
 
 Linear regulator is a individual module. Module mounted on back cooler.
 Regulator is four level voltage regulator. Hardware CC/CV detector.
-Controlled by STM32F337. Used 16bit delta-sigma ADC for measure voltage and current.
-For measure low current used INA229.
+Controlled by STM32F337. Used SAR 16bit (18bit oversampling mode) for measure voltage and current.
 AD5663 16bit DAC use for current and voltage setpoint.
-Used fan speed proportional control for minimize noise.
+Used fan speed proportional control for minimize sound noise.
 Module communicate by UART ModBus.
 Module [schematic](PCB/PS3604LR/Project%20Outputs%20for%20PS3604LR/PS3604LR.pdf).
 <img src="Photo/regulator_top.jpg" style="zoom:20%;" />
