@@ -22,8 +22,8 @@ calibrations = [
 
 	['v0_u'				,"V"		    ,'int32_t'	,0x0310],
 	['v1_u'				,"V"		    ,'int32_t'	,0x0312],
-	['v2_u'				,"V"	    	    ,'int32_t'	,0x0314],
-	['v3_u'				,"V"	        	,'int32_t'	,0x0316],
+	['v2_u'				,"V"	    	,'int32_t'	,0x0314],
+	['v3_u'				,"V"	        ,'int32_t'	,0x0316],
 	['v4_u'				,"V"		    ,'int32_t'	,0x0318],
 	['v5_u'				,"V"		    ,'int32_t'	,0x031A],
 	
@@ -86,11 +86,13 @@ if args.rfilename or (args.rfilename == None and args.wfilename == None):
 		ptype = parameter[2]
 		paddr = parameter[3]
 		if ptype == 'uint32_t':
-			val = ps._Ps3604l__read_u32(paddr)
+			val = ps.regulator.modbus.read_u32(paddr)
 		if ptype == 'int32_t':
-			val = ps._Ps3604l__read_i32(paddr)
+			val = ps.regulator.modbus.read_i32(paddr)
+		if ptype == 'int16_t':
+				val = ps.regulator.modbus.read_i16(paddr)
 		if ptype == 'uint16_t':
-			val = ps._Ps3604l__read_u16(paddr)
+			val = ps.regulator.modbus.read_u16(paddr)
 		print('read {} {} [{}] {}'.format(pname, ptype, hex(paddr), val))
 		s = pname + ',' + ptype + ',' + hex(paddr) + ',' + str(val)
 		if file:
@@ -114,12 +116,14 @@ if args.wfilename:
 		pval = int(parameter[3])
 		print('write {} {} [{}] {}'.format(pname, ptype, paddr, pval))
 		if ptype == 'uint32_t':
-			val = ps._Ps3604l__write_u32(paddr, pval)
+			val = ps.regulator.modbus.write_u32(paddr, pval)
 		if ptype == 'int32_t':
-			val = ps._Ps3604l__write_i32(paddr, pval)
+			val = ps.regulator.modbus.write_i32(paddr, pval)
+		if ptype == 'int16_t':
+			val = ps.regulator.modbus.write_i16(paddr, pval)
 		if ptype == 'uint16_t':
-			val = ps._Ps3604l__write_u16(paddr, pval)
-	ps.target_save_settings = 1
+			val = ps.regulator.modbus.write_u16(paddr, pval)
+	ps.regulator.target_save_settings = 1
 	print('Write done')
 
 
