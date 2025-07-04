@@ -66,6 +66,9 @@ class Modbus:
         return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.INT32,
                                                   word_order='little')
 
+    def read_holding_registers(self, reg, count):
+        return self.client.read_holding_registers(reg, count=count, slave=self.slaveaddr) 
+
     def writeFileRecord(self, file_number, record_number, record_data):
         record = FileRecord(file_number=1, record_number=record_number, record_data=record_data)
         self.client.write_file_record([record], slave=self.slaveaddr)
@@ -131,7 +134,7 @@ class Regulator:
     state_voltage = property(lambda self: self.modbus.read_i32(0x0200) / 1000000.0, None)
     state_current = property(lambda self: self.modbus.read_i32(0x0202) / 1000000.0, None)
     state_power = property(lambda self: self.modbus.read_i32(0x0204) / 1000000.0, None)
-    state_resistance = property(lambda self: self.modbus.read_i32(0x0206) / 1000000.0, None)
+    state_resistance = property(lambda self: self.modbus.read_i32(0x0206) / 10000.0, None)
     state_time = property(lambda self: self.modbus.read_u32(0x0208), None)
     state_capacity = property(lambda self: self.modbus.read_u32(0x020A), None)
     state_input_voltage = property(lambda self: self.modbus.read_i32(0x020C) / 1000000.0, None)
@@ -145,19 +148,20 @@ class Regulator:
         pass
 
     def getState(self):
+        rr = self.modbus.read_holding_registers(0x0200, count=19) 
         s = self.State()
-        s.voltage = self.state_voltage
-        s.current = self.state_current
-        s.power = self.state_power
-        s.resistance = self.state_resistance
-        s.time = self.state_time / 1000.0
-        s.capacity = self.state_capacity
-        s.input_voltage = self.state_input_voltage
-        s.state_temp_heatsink = self.state_temp_heatsink
-        s.state_temp_shunt = self.state_temp_shunt
-        s.state_temp_ref = self.state_temp_ref
-        s.status = self.state_status
-        s.disablecause = self.state_disablecause
+        s.voltage = self.modbus.client.convert_from_registers([rr.registers[1], rr.registers[0]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
+        s.current = self.modbus.client.convert_from_registers([rr.registers[3], rr.registers[2]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
+        s.power = self.modbus.client.convert_from_registers([rr.registers[5], rr.registers[4]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
+        s.resistance = self.modbus.client.convert_from_registers([rr.registers[7], rr.registers[6]], data_type=self.modbus.client.DATATYPE.INT32) / 10000.0
+        s.time = self.modbus.client.convert_from_registers([rr.registers[9], rr.registers[8]], data_type=self.modbus.client.DATATYPE.UINT32) / 1000.0
+        s.capacity = self.modbus.client.convert_from_registers([rr.registers[11], rr.registers[10]], data_type=self.modbus.client.DATATYPE.UINT32)
+        s.input_voltage = self.modbus.client.convert_from_registers([rr.registers[13], rr.registers[12]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
+        s.state_temp_heatsink = self.modbus.client.convert_from_registers([rr.registers[14]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.state_temp_shunt = self.modbus.client.convert_from_registers([rr.registers[15]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.state_temp_ref = self.modbus.client.convert_from_registers([rr.registers[16]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.status = self.Status(self.modbus.client.convert_from_registers([rr.registers[17]], data_type=self.modbus.client.DATATYPE.UINT16))
+        s.disablecause = self.Disablecause(self.modbus.client.convert_from_registers([rr.registers[18]], data_type=self.modbus.client.DATATYPE.UINT16))
         return s
 
     def updateFw(self, filePath):
@@ -275,7 +279,7 @@ if __name__ == '__main__':
             s = ps.regulator.getState()
             lineUp='\x1B[F'
 
-            print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:9.6f}W | resistance: {:10.3f}Ω |'.format(
+            print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:9.6f}W | resistance: {:10.6f}Ω |'.format(
                 s.voltage,
                 s.current,
                 s.power,
