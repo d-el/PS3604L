@@ -14,6 +14,7 @@ from pymodbus import (
 from pymodbus.pdu import FileRecord
 from tqdm import tqdm
 
+#==============================================================================
 class ModbusClient:
     def __init__(self, ip, port=502):
         self.client = client.ModbusTcpClient(ip, port=port,
@@ -27,6 +28,7 @@ class ModbusClient:
     def __del__(self):
         self.client.close()
 
+#==============================================================================
 class Modbus:
     def __init__(self, mbclient: ModbusClient, slaveaddr: int):
         self.client = mbclient.client
@@ -73,6 +75,7 @@ class Modbus:
         record = FileRecord(file_number=1, record_number=record_number, record_data=record_data)
         self.client.write_file_record([record], slave=self.slaveaddr)
 
+#==============================================================================
 class Regulator:
     def __init__(self, modbusclient):
         self.modbus = Modbus(modbusclient, 1)
@@ -82,6 +85,10 @@ class Regulator:
         limitation = 1
         lowCurrentShutdown = 3
         dacMode = 4
+
+    class Crange(enum.Enum):
+	    hi = 0
+	    auto = 1
 
     class Status(enum.Flag):
         normal = 0
@@ -126,8 +133,8 @@ class Regulator:
                              lambda self, val: self.modbus.write_u16(0x010B, val))
     target_save_settings = property(lambda self: self.modbus.read_u16(0x010F),
                                     lambda self, val: self.modbus.write_u16(0x010F, val))
-    target_crange = property(lambda self: self.modbus.read_u16(0x0110),
-                             lambda self, val: self.modbus.write_u16(0x0110, val))
+    target_crange = property(lambda self: self.Crange(self.modbus.read_u16(0x0110)),
+                             lambda self, val: self.modbus.write_u16(0x0110, val.value))
     target_reboot = property(lambda self: self.modbus.read_u16(0x0111),
                              lambda self, val: self.modbus.write_u16(0x0111, val))
 
@@ -181,6 +188,7 @@ class Regulator:
         major, minor, patch = self.readVersion()
         print(f'New regulator version {major}.{minor}.{patch}')
 
+#==============================================================================
 class Panel(Modbus):
     def __init__(self, modbusclient):
         self.modbus = Modbus(modbusclient, 2)
@@ -222,6 +230,7 @@ class Ps3604l:
         pmajor, pminor, ppatch = self.panel.readVersion()
         print(f'Version P{pmajor}.{pminor}.{ppatch} R{rmajor}.{rminor}.{rpatch}, sn {self.regulator.sn}')
 
+#==============================================================================
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description='PS3604L power supply command line interface.',
                                  formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -239,6 +248,7 @@ if __name__ == '__main__':
     ap.add_argument('-i', '--ipaddr', required=True, help='Device IP address')
     ap.add_argument('-v', '--voltage', type=float, required=True, help='voltag')
     ap.add_argument('-c', '--current', type=float, required=True, help='current')
+    ap.add_argument('-m', '--currentmeter', type=str, required=False, default='h', help='current meter range, h - high, a - auto')
     ap.add_argument('-t', '--time', type=float, help='time')
     ap.add_argument("-r", "--fwregulator", required=False, help="Firmware regulator file")
     ap.add_argument("-p", "--fwpanel", required=False, help="Firmware panel file")
@@ -270,6 +280,7 @@ if __name__ == '__main__':
     ps.regulator.target_voltage = args.voltage
     ps.regulator.target_current = args.current
     ps.regulator.target_mode = ps.regulator.Mode.limitation
+    ps.regulator.target_crange = ps.regulator.Crange.hi if args.currentmeter == 'h' else ps.regulator.Crange.auto
     if args.time:
         ps.regulator.target_time = args.time
     ps.regulator.target_enable = 1
@@ -279,11 +290,12 @@ if __name__ == '__main__':
             s = ps.regulator.getState()
             lineUp='\x1B[F'
 
-            print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:9.6f}W | resistance: {:10.6f}Ω |'.format(
+            res_str = f'{s.resistance:10.6f}' if s.resistance > 0 else '       ---'
+            print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:9.6f}W | resistance: {}Ω |'.format(
                 s.voltage,
                 s.current,
                 s.power,
-                s.resistance)
+                res_str)
                 + ' '*20)
 
             print('| enable: {:9} | vdc: {:13.1f}V | time: {:10.3f}s | capacity: {:11.3f}Ah |'.format(
