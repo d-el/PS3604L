@@ -68,6 +68,35 @@ Module communicate by UART ModBus.
 Module [schematic](PCB/PS3604LR/output/PS3604LR.PDF).
 <img src="Photo/regulator_top.jpg" style="zoom:20%;" />
 
+Measurement and comparison of the transient process.
+Semiconductor resistors and a switch controlled by a functional generator are used as a transient generator.
+One resistor with a resistance of 10 Ohms is connected in parallel to the output of the device under test, the second resistor with a nominal value of 7.3 Ohms is connected in parallel to the device under test through a controlled switch.
+Current measurement is performed using a Lecroy AP015 current probe. The voltage measurement is performed directly at the terminals of the device under tested using a high impedance passive probe.
+
+Test 1. Both devices are set up the same, 8V 4A, the table shows the graphs of the current rise transient process measurement:
+
+|                        Agilent 6611C                         |                           PS3604L                            |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/6611C_rs.png" style="zoom:60%;" /> | <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/3604L_rs.png" style="zoom:60%;" /> |
+
+Test 2. Both devices are set up the same, 8V 4A, the table shows the graphs of the current fall transient process measurement:
+
+|                        Agilent 6611C                         |                           PS3604L                            |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                                              |                                                              |
+| <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/6611C_fl.png" style="zoom:60%;" /> | <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/3604L_fl.png" style="zoom:60%;" /> |
+
+Test 3. Both devices are set up the same, 8V 1A, the table shows the graphs of the current rise transient process measurement:
+
+|                        Agilent 6611C                         |                           PS3604L                            |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                                              |                                                              |
+| <img src="Photo/v3.3_compare_with_6611C/setting_8V_1A/6611C.png" style="zoom:60%;" /> | <img src="Photo/v3.3_compare_with_6611C/setting_8V_1A/3604L.png" style="zoom:60%;" /> |
+
+In more detail, PS3604L:
+
+<img src="Photo/v3.3_compare_with_6611C/setting_8V_1A/3604L_det.png" style="zoom:60%;" />
+
 ## Front panel
 
 Front panel is GUI and Ethernet bridge.  
