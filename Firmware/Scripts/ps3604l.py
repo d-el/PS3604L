@@ -83,8 +83,8 @@ class Regulator:
     class Mode(enum.Enum):
         overcurrentShutdown = 0
         limitation = 1
-        lowCurrentShutdown = 3
-        dacMode = 4
+        lowCurrentShutdown = 2
+        dacMode = 3
 
     class Crange(enum.Enum):
 	    hi = 0
@@ -125,6 +125,10 @@ class Regulator:
                               lambda self, val: self.modbus.write_i32(0x0100, int(float(val) * 1000000)))
     target_current = property(lambda self: self.modbus.read_i32(0x0102),
                               lambda self, val: self.modbus.write_i32(0x0102, int(float(val) * 1000000)))
+    target_vdac = property(lambda self: self.modbus.read_i32(0x0104),
+                              lambda self, val: self.modbus.write_i32(0x0104, int(val)))
+    target_idac = property(lambda self: self.modbus.read_i32(0x0106),
+                              lambda self, val: self.modbus.write_i32(0x0106, int(val)))
     target_mode = property(lambda self: self.Mode(self.modbus.read_u16(0x0108)),
                            lambda self, val: self.modbus.write_u16(0x0108, val.value))
     target_time = property(lambda self: self.modbus.read_u32(0x0109) / 1000.0,
@@ -150,6 +154,8 @@ class Regulator:
     state_temp_ref = property(lambda self: self.modbus.read_i16(0x0210) / 10.0, None)
     state_status = property(lambda self: self.Status(self.modbus.read_u16(0x0211)), None)
     state_disablecause = property(lambda self: self.Disablecause(self.modbus.read_u16(0x0212)), None)
+    state_vadc = property(lambda self: self.modbus.read_i32(0x0213), None)
+    state_iadc = property(lambda self: self.modbus.read_i32(0x0215), None)
 
     class State():
         pass
