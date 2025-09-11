@@ -37,7 +37,7 @@ Unless otherwise noted, specifications apply when measured after a 30-minute war
 | **Output Ratings**                                           |                                    Voltage:<br />Current: |    0 – 36 V<br />0 – 4 A    |
 | **Programming Accuracy**<br/>(@ 25°C ±5°C)                   |                                    Voltage:<br />Current: |        5 mV<br />2mA        |
 | **DC Measurement Accuracy**<br />(@ 25°C ±5°C)               | Voltage:<br />Current 0 – 1 mA:<br />Current 0.001 – 4 A: | 5 mV<br />0.01 mA<br />2 mA |
-| **Ripple and Noise**                                         |                                                       TBD |             TBD             |
+| **Ripple and Noise**                                         |                        Voltage: (rms)<br />Current (rms): |     0.5 mV<br />1.5 mA      |
 | **Load Regulation**                                          |                                                       TBD |             TBD             |
 | **Line Regulation**<br/>(change in output voltage<br/>or current for any line<br/>change within ratings) |                                                       TBD |             TBD             |
 | **Transient Response Time**<br />*1                          |                                                           |           < 50 μs           |
