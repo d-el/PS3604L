@@ -44,10 +44,10 @@ if args.current:
 else:
 	Vinit_v = 0		# [V]
 	Vinit_c = 1		# [A]
-	Vmin = 0.1		# [V]
-	Vth = 0.5		# [V]
-	Vmax = 36		# [V]
-	Vstep1 = 0.1    	# [V]
+	Vmin = 300		# [V]
+	Vth = 1000		# [V]
+	Vmax = 500	    # [V]
+	Vstep1 = 10   	# [V]
 	Vstep2 = 0.1		# [V]
 	Time1 = 1		# [s]
 	Time2 = 1		# [s]
@@ -57,12 +57,14 @@ else:
 if not args.plot:
 	# Open power supply
 	ps = Ps3604l(args.ipaddr)
-	ps.target_voltage = Vinit_v
-	ps.target_current = Vinit_c
-	ps.target_mode = ps.Mode.limitation
-	ps.target_time = 0
-	ps.target_enable = 1
-	time.sleep(0.1)
+	#ps.regulator.target_voltage = Vinit_v
+	#ps.regulator.target_current = Vinit_c
+	ps.regulator.target_idac = 2000
+	#ps.regulator.target_mode = ps.regulator.Mode.limitation
+	ps.regulator.target_mode = ps.regulator.Mode.dacMode
+	ps.regulator.target_time = 0
+	ps.regulator.target_enable = 1
+	time.sleep(0.5)
 
 	# Open DMM
 	dmm = HP34401A(vxi11.Instrument("192.168.88.116", f"gpib0,{args.gpib}"));
@@ -82,9 +84,10 @@ if not args.plot:
 		vstep = 0
 		while vset <= Vmax:
 			if args.current:
-				ps.target_current = vset
+				ps.regulator.target_current = vset
 			else:
-				ps.target_voltage = vset
+				#ps.regulator.target_voltage = vset
+				ps.regulator.target_vdac = vset
 			
 			if vset < Vth:
 				vstep = Vstep1
@@ -93,10 +96,11 @@ if not args.plot:
 				vstep = Vstep2
 				time.sleep(Time2)
 
-			vmeas = ps.state_current if args.current else ps.state_voltage
+			#vmeas = ps.regulator.state_current if args.current else ps.regulator.state_voltage
+			vmeas = ps.regulator.state_vadc
 			vdmm = dmm.reading
-			wr_error = vmeas - vset
-			vset_error = vset - vdmm
+			wr_error = 0
+			vset_error = vdmm
 			print(f'set {vset:2.3f}{unit}, meas {vmeas:2.3f}{unit}, vdmm {vdmm:2.4f}{unit}, set_error {vset_error:2.4f}{unit}, wr_error {wr_error:2.4f}{unit}')
 			
 			writer.writerow([vset, vset_error, wr_error])
@@ -107,15 +111,15 @@ if not args.plot:
 			if vset > Vmax:
 				vset = Vmax
 		
-		ps.target_voltage = 0
-		ps.target_current = 0
-		ps.target_enable = 0
+		ps.regulator.target_voltage = 0
+		ps.regulator.target_current = 0
+		ps.regulator.target_enable = 0
 		f.close()
 		
 	except KeyboardInterrupt:
-		ps.target_enable = 0
-		ps.target_voltage = 0
-		ps.target_current = 0
+		ps.regulator.target_enable = 0
+		ps.regulator.target_voltage = 0
+		ps.regulator.target_current = 0
 		exit(0)
 	
 # Create Graph
