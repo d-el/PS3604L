@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Accuracy measure
-# version 0.1
+# Version: 0.2
 
 from ps3604l import Ps3604l
 import argparse
@@ -57,11 +57,9 @@ else:
 if not args.plot:
 	# Open power supply
 	ps = Ps3604l(args.ipaddr)
-	#ps.regulator.target_voltage = Vinit_v
-	#ps.regulator.target_current = Vinit_c
-	ps.regulator.target_idac = 2000
-	#ps.regulator.target_mode = ps.regulator.Mode.limitation
-	ps.regulator.target_mode = ps.regulator.Mode.dacMode
+	ps.regulator.target_voltage = Vinit_v
+	ps.regulator.target_current = Vinit_c
+	ps.regulator.target_mode = ps.regulator.Mode.limitation
 	ps.regulator.target_time = 0
 	ps.regulator.target_enable = 1
 	time.sleep(0.5)
@@ -86,8 +84,7 @@ if not args.plot:
 			if args.current:
 				ps.regulator.target_current = vset
 			else:
-				#ps.regulator.target_voltage = vset
-				ps.regulator.target_vdac = vset
+				ps.regulator.target_voltage = vset
 			
 			if vset < Vth:
 				vstep = Vstep1
@@ -96,8 +93,7 @@ if not args.plot:
 				vstep = Vstep2
 				time.sleep(Time2)
 
-			#vmeas = ps.regulator.state_current if args.current else ps.regulator.state_voltage
-			vmeas = ps.regulator.state_vadc
+			vmeas = ps.regulator.state_current if args.current else ps.regulator.state_voltage
 			vdmm = dmm.reading
 			wr_error = 0
 			vset_error = vdmm
