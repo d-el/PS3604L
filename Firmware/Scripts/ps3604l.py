@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # API and command line program
-# version 0.3
+# Version: 0.4
 
 import argparse
 import enum
@@ -135,6 +135,8 @@ class Regulator:
                            lambda self, val: self.modbus.write_u32(0x0109, int(val * 1000.0)))
     target_enable = property(lambda self: self.modbus.read_u16(0x010B),
                              lambda self, val: self.modbus.write_u16(0x010B, val))
+    target_wire_resistance = property(lambda self: self.modbus.read_u32(0x010C) / 10000.0,
+                             lambda self, val: self.modbus.write_u32(0x010C, int(float(val) * 10000)))
     target_save_settings = property(lambda self: self.modbus.read_u16(0x010F),
                                     lambda self, val: self.modbus.write_u16(0x010F, val))
     target_crange = property(lambda self: self.Crange(self.modbus.read_u16(0x0110)),
