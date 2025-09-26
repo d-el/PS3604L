@@ -13,7 +13,7 @@ import textwrap
 Rw = 0.079 # [Ohm] Wires resistance
 Vlimit = 5.0 # [V]
 Istart = 0.001 # [A]
-Iend = 3.0 # [A]
+Iend = 0.1 # [A]
 
 Ithreshold = 0.05 # [A]
 
@@ -28,10 +28,10 @@ ap = argparse.ArgumentParser(description='I-V measure',
                             formatter_class=argparse.RawDescriptionHelpFormatter,
                                  epilog=textwrap.dedent('''\
                             Example:
-                                Example: ./iv-curve.py -i 192.168.88.11 --name C3D02065E
-                             '''))
+                                ./iv-curve.py -i 192.168.88.11 --name C3D02065E
+                            '''))
 
-ap.add_argument("-i", "--ipaddr", required=False, help="IP address PS3604L", default="192.168.1.10")
+ap.add_argument("-i", "--ipaddr", required=True, help="IP address PS3604L")
 ap.add_argument("-n", "--name", required=True, help="Name")
 ap.add_argument("-d", "--description", required=False, help="Description")
 args = ap.parse_args()
