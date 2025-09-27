@@ -324,6 +324,6 @@ if __name__ == '__main__':
         except KeyboardInterrupt:
             ps.regulator.target_enable = 0
             ps.regulator.target_voltage = 0
-            ps.regulator.target_current = 0
+            ps.regulator.target_current = 0.0001
             print('\n\n')
             break
