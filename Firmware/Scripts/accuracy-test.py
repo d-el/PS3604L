@@ -68,7 +68,7 @@ if __name__ == '__main__':
 
     if args.current:
 	    config_init_v = 10	    # [V]
-	    config_init_c = 0		# [A]
+	    config_init_c = 0.0001	# [A]
 	    config_min = 0.001	    # [A]
 	    config_th = 0.010		# [A]
 	    config_max = 1.0		    # [A]
@@ -162,14 +162,14 @@ if __name__ == '__main__':
 				    vset = config_max
 		    
 		    ps.regulator.target_voltage = 0
-		    ps.regulator.target_current = 0
+		    ps.regulator.target_current = 0.0001
 		    ps.regulator.target_enable = 0
 		    f.close()
 		    
 	    except KeyboardInterrupt:
 		    ps.regulator.target_enable = 0
 		    ps.regulator.target_voltage = 0
-		    ps.regulator.target_current = 0
+		    ps.regulator.target_current = 0.0001
 		    exit(0)
 	    
     # Plot
