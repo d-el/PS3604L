@@ -35,45 +35,45 @@ class Modbus:
         self.slaveaddr = slaveaddr
 
     def write_u16(self, reg, val):
-        self.client.write_register(reg, val, slave=self.slaveaddr)
+        self.client.write_register(reg, val, device_id=self.slaveaddr)
 
     def read_u16(self, reg):
-        r = self.client.read_holding_registers(reg, count=1, slave=self.slaveaddr)
+        r = self.client.read_holding_registers(reg, count=1, device_id=self.slaveaddr)
         return r.registers[0]
 
     def read_i16(self, reg):
-        result = self.client.read_holding_registers(reg, count=1, slave=self.slaveaddr)
+        result = self.client.read_holding_registers(reg, count=1, device_id=self.slaveaddr)
         return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.INT16,
                                                   word_order='little')
 
     def write_i16(self, reg):
         pay = self.client.convert_to_registers(val, data_type=self.client.DATATYPE.INT16)
-        self.client.write_registers(reg, pay, skip_encode=True, slave=self.slaveaddr)
+        self.client.write_registers(reg, pay, skip_encode=True, device_id=self.slaveaddr)
 
     def write_u32(self, reg, val):
         pay = self.client.convert_to_registers(val, data_type=self.client.DATATYPE.UINT32, word_order='little')
-        self.client.write_registers(reg, pay, slave=self.slaveaddr)
+        self.client.write_registers(reg, pay, device_id=self.slaveaddr)
 
     def read_u32(self, reg):
-        result = self.client.read_holding_registers(reg, count=2, slave=self.slaveaddr)
+        result = self.client.read_holding_registers(reg, count=2, device_id=self.slaveaddr)
         return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.UINT32,
                                                   word_order='little')
 
     def write_i32(self, reg, val):
         pay = self.client.convert_to_registers(val, data_type=self.client.DATATYPE.INT32, word_order='little')
-        self.client.write_registers(reg, pay, slave=self.slaveaddr)
+        self.client.write_registers(reg, pay, device_id=self.slaveaddr)
 
     def read_i32(self, reg):
-        result = self.client.read_holding_registers(reg, count=2, slave=self.slaveaddr)
+        result = self.client.read_holding_registers(reg, count=2, device_id=self.slaveaddr)
         return self.client.convert_from_registers(result.registers, data_type=self.client.DATATYPE.INT32,
                                                   word_order='little')
 
     def read_holding_registers(self, reg, count):
-        return self.client.read_holding_registers(reg, count=count, slave=self.slaveaddr) 
+        return self.client.read_holding_registers(reg, count=count, device_id=self.slaveaddr) 
 
     def writeFileRecord(self, file_number, record_number, record_data):
         record = FileRecord(file_number=1, record_number=record_number, record_data=record_data)
-        self.client.write_file_record([record], slave=self.slaveaddr)
+        self.client.write_file_record([record], device_id=self.slaveaddr)
 
 #==============================================================================
 class Regulator:
@@ -249,9 +249,9 @@ if __name__ == '__main__':
                     Enable 1V, 0.1A, 100ms
                         ./ps3604l.py -i 192.168.88.11 -v1 -c0.1 -t0.1
                     Upgrade panel firmware:
-                        ./ps3604l.py -i 192.168.88.11 -v0 -c0 -p ../Panel/build/PS3604LF_2.5.0.bin
+                        ./ps3604l.py -i 192.168.88.11 -v0 -c0 -p ../Panel/build/PS3604LF.bin
                     Upgrade regulator firmware:
-                        ./ps3604l.py -i 192.168.88.11 -v0 -c0 -r ../Regulator/build/PS3604LR_1.12.5.bin
+                        ./ps3604l.py -i 192.168.88.11 -v0 -c0 -r ../Regulator/build/PS3604LR.bin
                  '''))
     ap.add_argument('-i', '--ipaddr', required=True, help='Device IP address')
     ap.add_argument('-v', '--voltage', type=float, required=True, help='voltag')
