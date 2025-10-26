@@ -17,15 +17,16 @@ import textwrap
 class k2001:
     def __init__(self, adapter):
         self.meter = keithley2001.Keithley2001(adapter)
+        self.meter.display_enable(True, True)
     
     def setupVoltage(self):
         self.meter.measure_voltage()
-        self.meter.voltage_nplc = 2
+        self.meter.voltage_nplc = 10
     def getVoltage(self):
         return self.meter.voltage
     def setupCurrent(self):
         self.meter.measure_current()
-        self.meter.current_nplc = 2
+        self.meter.current_nplc = 10
     def getCurrent(self):
         return self.meter.current
 
@@ -38,7 +39,8 @@ class h34401:
     def setupVoltage(self):
         self.meter.function_ = 'DCV'
     def getVoltage(self):
-        return self.meter.reading
+        self.meter.reading
+        return (self.meter.reading + self.meter.reading + self.meter.reading) / 3
     def setupCurrent(self):
         self.meter.function_ = 'DCI'
     def getCurrent(self):
@@ -80,13 +82,13 @@ if __name__ == '__main__':
     else:
 	    config_init_v = 0		# [V]
 	    config_init_c = 1		# [A]
-	    config_min = 0		    # [V]
-	    config_th = 0.05		    # [V]
-	    config_max = 37	        # [V]
-	    config_step1 = 0.010  	# [V]
-	    config_step2 = 0.5		# [V]
-	    config_time1 = 0.5		# [s]
-	    config_time2 = 0.5		# [s]
+	    config_min = 35		    # [V]
+	    config_th = 34.0        # [V]
+	    config_max = 36.0       # [V]
+	    config_step1 = 0.1     	# [V]
+	    config_step2 = 0.1		# [V]
+	    config_time1 = 1.6		# [s]
+	    config_time2 = 1.6		# [s]
 	    config_unit = 'V'
 
     # Measure
