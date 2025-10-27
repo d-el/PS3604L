@@ -45,6 +45,10 @@ Unless otherwise noted, specifications apply when measured after a 30-minute war
 1. For the output voltage to recover to its previous level within 0.1% of the voltage rating of the unit or 20 millivolts following a
    change in load current of up to 50% of the output current rating
 
+Short term voltage accuracy:
+
+<img src="Photo/ShortTermVoltAccuracy.JPG" style="zoom:30%;" />
+
 ### Supplemental Characteristics
 
 | Parameter                                                    |                                                              |                                               |
