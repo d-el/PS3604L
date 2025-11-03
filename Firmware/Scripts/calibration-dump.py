@@ -74,8 +74,8 @@ calibrations = [
 
 if args.sn:
     print('write serial number: {}'.format(args.sn))
-    ps._Ps3604l__write_u32(0x0004, args.sn)
-    ps.target_save_settings = 1
+    ps.regulator.modbus.write_u32(0x0004, args.sn)
+    ps.regulator.target_save_settings = 1
 
 if args.rfilename or (args.rfilename == None and args.wfilename == None):
     file = None
