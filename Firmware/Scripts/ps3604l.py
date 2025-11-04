@@ -123,7 +123,7 @@ class Regulator:
 
     target_voltage = property(lambda self: self.modbus.read_i32(0x0100) / 1000000.0,
                               lambda self, val: self.modbus.write_i32(0x0100, int(float(val) * 1000000)))
-    target_current = property(lambda self: self.modbus.read_i32(0x0102),
+    target_current = property(lambda self: self.modbus.read_i32(0x0102) / 1000000.0,
                               lambda self, val: self.modbus.write_i32(0x0102, int(float(val) * 1000000)))
     target_vdac = property(lambda self: self.modbus.read_i32(0x0104),
                               lambda self, val: self.modbus.write_i32(0x0104, int(val)))
@@ -143,6 +143,10 @@ class Regulator:
                              lambda self, val: self.modbus.write_u16(0x0110, val.value))
     target_reboot = property(lambda self: self.modbus.read_u16(0x0111),
                              lambda self, val: self.modbus.write_u16(0x0111, val))
+    target_vfilter_size = property(lambda self: self.modbus.read_u16(0x0112),
+                             lambda self, val: self.modbus.write_u16(0x0112, val))
+    target_ifilter_size = property(lambda self: self.modbus.read_u16(0x0113),
+                             lambda self, val: self.modbus.write_u16(0x0113, val))
 
     state_voltage = property(lambda self: self.modbus.read_i32(0x0200) / 1000000.0, None)
     state_current = property(lambda self: self.modbus.read_i32(0x0202) / 1000000.0, None)
