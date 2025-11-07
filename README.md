@@ -6,7 +6,7 @@ The PS3604L is a 144 Watt, high performance dc power supply with output current 
 Combination of bench-top and system features in these dc source.
 For more photos to /Photo.
 
-<img src="Photo/face.jpg" style="zoom:25%;" />
+<img src="Pictures/face.jpg" style="zoom:25%;" />
 
 ### Convenient bench-top features
 
@@ -47,7 +47,7 @@ Unless otherwise noted, specifications apply when measured after a 30-minute war
 
 Short term voltage accuracy:
 
-<img src="Photo/ShortTermVoltAccuracy.JPG" style="zoom:30%;" />
+<img src="Pictures/Measured/ShortTermVoltAccuracy.JPG" style="zoom:30%;" />
 
 ### Supplemental Characteristics
 
@@ -61,16 +61,20 @@ Short term voltage accuracy:
 | **Dimensions**                                               |                              Height:<br />Width:<br />Depth: |         78 mm<br />158 mm<br />268 mm         |
 | **Net weight**                                               |                                                              |                   3.850 kg                    |
 
+------
+
+
+
 ## Linear regulator
 
-Linear regulator is a individual module. Module mounted on back cooler.
+Linear regulator is a separate module. Module mounted on back aluminum radiator.
 Regulator is four level voltage regulator. Hardware CC/CV detector.
-Controlled by STM32F337. Used SAR 16bit (18bit oversampling mode) for measure voltage and current.
-AD5663 16bit DAC use for current and voltage setpoint.
-Used fan speed proportional control for minimize sound noise.
+Controlled by STM32F337. Used AD4680 SAR 16bit (18bit oversampling mode) for measure voltage and current.
+AD5060 16bit DAC use for current and voltage setpoint.
+Fan speed proportional control for minimize sound noise.
 Module communicate by UART ModBus.
 Module [schematic](PCB/PS3604LR/output/PS3604LR.PDF).
-<img src="Photo/regulator_top.jpg" style="zoom:20%;" />
+<img src="Pictures/regulator_top.jpg" style="zoom:20%;" />
 
 Measurement and comparison of the transient process.
 Semiconductor resistors and a switch controlled by a functional generator are used as a transient generator.
@@ -81,30 +85,43 @@ Test 1. Both devices are set up the same, 8V 4A, the table shows the graphs of t
 
 |                        Agilent 6611C                         |                           PS3604L                            |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/6611C_rs.png" style="zoom:60%;" /> | <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/3604L_rs.png" style="zoom:60%;" /> |
+| <img src="Pictures/v3.3_compare_with_6611C/setting_8V_4A/6611C_rs.png" style="zoom:60%;" /> | <img src="Pictures/v3.3_compare_with_6611C/setting_8V_4A/3604L_rs.png" style="zoom:60%;" /> |
 
 Test 2. Both devices are set up the same, 8V 4A, the table shows the graphs of the current fall transient process measurement:
 
 |                        Agilent 6611C                         |                           PS3604L                            |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |                                                              |                                                              |
-| <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/6611C_fl.png" style="zoom:60%;" /> | <img src="Photo/v3.3_compare_with_6611C/setting_8V_4A/3604L_fl.png" style="zoom:60%;" /> |
+| <img src="Pictures/v3.3_compare_with_6611C/setting_8V_4A/6611C_fl.png" style="zoom:60%;" /> | <img src="Pictures/v3.3_compare_with_6611C/setting_8V_4A/3604L_fl.png" style="zoom:60%;" /> |
 
 Test 3. Both devices are set up the same, 8V 1A, the table shows the graphs of the current rise transient process measurement:
 
 |                        Agilent 6611C                         |                           PS3604L                            |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |                                                              |                                                              |
-| <img src="Photo/v3.3_compare_with_6611C/setting_8V_1A/6611C.png" style="zoom:60%;" /> | <img src="Photo/v3.3_compare_with_6611C/setting_8V_1A/3604L.png" style="zoom:60%;" /> |
+| <img src="Pictures/v3.3_compare_with_6611C/setting_8V_1A/6611C.png" style="zoom:60%;" /> | <img src="Pictures/v3.3_compare_with_6611C/setting_8V_1A/3604L.png" style="zoom:60%;" /> |
 
 In more detail, PS3604L:
 
-<img src="Photo/v3.3_compare_with_6611C/setting_8V_1A/3604L_det.png" style="zoom:60%;" />
+<img src="Pictures/v3.3_compare_with_6611C/setting_8V_1A/3604L_det.png" style="zoom:100%;" />
+
+------
+
+
 
 ## Front panel
 
 Front panel is GUI and Ethernet bridge.  
 Build on STM32F407 MCU, LAN8720 as Eth PHY.  
 Module [schematic](PCB/PS3604LF/Project%20Outputs%20for%20PS3604LF/PS3604LF.PDF).
-<img src="Photo/IMG_4574.JPG" style="zoom:20%;" />
+<img src="Pictures/IMG_4574.JPG" style="zoom:20%;" />
 
+------
+
+
+
+## Extra application
+
+1. Measure series output characteristics of a MOSFET. [Link](/Firmware/Scripts/x-curve.py) to script.
+
+<img src="Pictures/Measured/IRF3710.svg" figcaption="Measured series output characteristics of a MOSFET" style="zoom:67%;" />
