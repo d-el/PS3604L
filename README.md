@@ -65,6 +65,16 @@ Short term voltage accuracy:
 
 
 
+## Structure
+
+The device has the following modules: Transformer, Rectifier, Regulator, and Front Panel. The structural diagram is shown below.
+
+<img src="PS3604L.drawio.svg" style="zoom:100%;" />
+
+------
+
+
+
 ## Linear regulator
 
 Linear regulator is a separate module. Module mounted on back aluminum radiator.
