@@ -86,7 +86,18 @@ Module communicate by UART ModBus.
 Module [schematic](PCB/PS3604LR/output/PS3604LR.PDF).
 <img src="Pictures/regulator_top.jpg" style="zoom:20%;" />
 
-Measurement and comparison of the transient process.
+### Current and voltage measurement firmware path
+
+Using the sample integrator and filter settings, can change the time constant of the voltage and current meter. The ADC sampling period is constant at 0.5 ms.
+
+Normal time constant for regular use if approximately 0.5 s (default value iintegration_size = 1, ifilter_size = 1000). Setting the sample integrator to 100 and the filter length to 1000 make measurement time constsnt of 50 s. This long time constant can be useful for estimating the device's average current consumption.
+
+Measurement firmware path diagram:
+
+<img src="Firmware/Regulator/PS3604LR.drawio.svg" style="zoom:100%;" />
+
+### Measurement and comparison of the transient process
+
 Semiconductor resistors and a switch controlled by a functional generator are used as a transient generator.
 One resistor with a resistance of 10 Ohms is connected in parallel to the output of the device under test, the second resistor with a nominal value of 7.3 Ohms is connected in parallel to the device under test through a controlled switch.
 Current measurement is performed using a Lecroy AP015 current probe. The voltage measurement is performed directly at the terminals of the device under tested using a high impedance passive probe.
