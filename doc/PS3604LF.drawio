@@ -1,0 +1,134 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.2.7">
+  <diagram name="Page-1" id="67VMAs96Yd3jRYrKH0xy">
+    <mxGraphModel dx="1360" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="7874" pageHeight="7874" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;glass=0;shadow=1;arcSize=6;opacity=20;" value="" vertex="1">
+          <mxGeometry height="190" width="500" x="570" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="STM32F407" vertex="1">
+          <mxGeometry height="80" width="80" x="750" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-3" edge="1" parent="1" source="afNf1YqdKM9-OlVSf-DK-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="afNf1YqdKM9-OlVSf-DK-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="LAN8720" vertex="1">
+          <mxGeometry height="40" width="80" x="750" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-5" edge="1" parent="1" source="afNf1YqdKM9-OlVSf-DK-4" style="endArrow=classicThin;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="740" y="390" as="sourcePoint" />
+            <mxPoint x="790" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-6" connectable="0" parent="afNf1YqdKM9-OlVSf-DK-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="RMII" vertex="1">
+          <mxGeometry relative="1" x="-0.1163" y="1" as="geometry">
+            <mxPoint x="1" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Ethernet&lt;div&gt;Connector J7&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="80" x="960" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-8" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.electro-mechanical.buzzer;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="605" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-9" edge="1" parent="1" source="afNf1YqdKM9-OlVSf-DK-8" style="endArrow=none;html=1;rounded=0;entryX=0.004;entryY=0.371;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.335;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="340" />
+              <mxPoint x="680" y="300" />
+            </Array>
+            <mxPoint x="680" y="300.12" as="sourcePoint" />
+            <mxPoint x="750.3200000000002" y="299.79999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-10" connectable="0" parent="afNf1YqdKM9-OlVSf-DK-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=0;" value="PWM1" vertex="1">
+          <mxGeometry relative="1" x="-0.4254" as="geometry">
+            <mxPoint x="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-11" edge="1" parent="1" source="afNf1YqdKM9-OlVSf-DK-8" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.625;entryDx=0;entryDy=0;exitX=1;exitY=0.665;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" target="afNf1YqdKM9-OlVSf-DK-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="350" />
+              <mxPoint x="690" y="310" />
+            </Array>
+            <mxPoint x="680" y="300" as="sourcePoint" />
+            <mxPoint x="730" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-12" connectable="0" parent="afNf1YqdKM9-OlVSf-DK-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=0;" value="PWM2" vertex="1">
+          <mxGeometry relative="1" x="0.0248" as="geometry">
+            <mxPoint x="-40" y="25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="EEPROM" vertex="1">
+          <mxGeometry height="40" width="60" x="610" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-14" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;direction=south;rotation=270;" value="Buzzer" vertex="1">
+          <mxGeometry height="12.5" width="40" x="570" y="338.75" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-15" edge="1" parent="1" source="afNf1YqdKM9-OlVSf-DK-13" style="endArrow=classicThin;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="395" />
+              <mxPoint x="720" y="320" />
+            </Array>
+            <mxPoint x="700" y="370" as="sourcePoint" />
+            <mxPoint x="750" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-16" connectable="0" parent="afNf1YqdKM9-OlVSf-DK-15" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="I2C" vertex="1">
+          <mxGeometry relative="1" x="-0.1459" y="1" as="geometry">
+            <mxPoint y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Buttons" vertex="1">
+          <mxGeometry height="40" width="60" x="610" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-18" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="afNf1YqdKM9-OlVSf-DK-17" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="750" y="290" as="sourcePoint" />
+            <mxPoint x="880" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-19" edge="1" parent="1" style="endArrow=classicThin;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;startArrow=classicThin;startFill=1;" target="afNf1YqdKM9-OlVSf-DK-25" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="320" />
+              <mxPoint x="850" y="350" />
+            </Array>
+            <mxPoint x="830" y="320" as="sourcePoint" />
+            <mxPoint x="919.9999999999999" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-20" connectable="0" parent="afNf1YqdKM9-OlVSf-DK-19" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="UART" vertex="1">
+          <mxGeometry relative="1" x="0.0041" y="-2" as="geometry">
+            <mxPoint x="10" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-21" edge="1" parent="1" source="afNf1YqdKM9-OlVSf-DK-24" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endFill=0;startArrow=classicThin;startFill=1;entryX=1.004;entryY=0.383;entryDx=0;entryDy=0;entryPerimeter=0;" target="afNf1YqdKM9-OlVSf-DK-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="919.9999999999999" y="290" as="sourcePoint" />
+            <mxPoint x="860" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-22" connectable="0" parent="afNf1YqdKM9-OlVSf-DK-21" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="SPI" vertex="1">
+          <mxGeometry relative="1" x="-0.2918" y="1" as="geometry">
+            <mxPoint x="-33" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-23" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="&lt;b&gt;PS3604LF&lt;/b&gt;&amp;nbsp; &amp;nbsp;Front Panel" vertex="1">
+          <mxGeometry height="30" width="155" x="570" y="418" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="LCD&lt;div&gt;128x160&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="60" x="980" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="afNf1YqdKM9-OlVSf-DK-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="UART&lt;div&gt;Connector J1&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="60" x="980" y="330" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

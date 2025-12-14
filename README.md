@@ -67,15 +67,21 @@ Short term voltage accuracy:
 
 ## Structure
 
-The device has the following modules: Transformer, Rectifier, Regulator, and Front Panel. The structural diagram is shown below.
+The device has the following modules: Transformer, Rectifier, Regulator, and Front Panel.
 
-<img src="PS3604L.drawio.svg" style="zoom:100%;" />
+Overall structure:
+
+<img src="doc/PS3604L.drawio.svg" style="zoom:100%;" />
 
 ------
 
 
 
 ## Linear regulator
+
+Regulator structure diagram:
+
+<img src="doc/PS3604LR.drawio.svg" style="zoom:100%;" />
 
 Linear regulator is a separate module. Module mounted on back aluminum radiator.
 Regulator is four level voltage regulator. Hardware CC/CV detector.
@@ -92,9 +98,9 @@ Using the sample integrator and filter settings, can change the time constant of
 
 Normal time constant for regular use if approximately 0.5 s (default value iintegration_size = 1, ifilter_size = 1000). Setting the sample integrator to 100 and the filter length to 1000 make measurement time constsnt of 50 s. This long time constant can be useful for estimating the device's average current consumption.
 
-Measurement firmware path diagram:
+Measurement firmware path:
 
-<img src="Firmware/Regulator/PS3604LR.drawio.svg" style="zoom:100%;" />
+<img src="doc/PS3604LRmp.drawio.svg" style="zoom:100%;" />
 
 ### Measurement and comparison of the transient process
 
@@ -131,6 +137,10 @@ In more detail, PS3604L:
 
 
 ## Front panel
+
+Panel structure:
+
+<img src="doc/PS3604LF.drawio.svg" style="zoom:100%;" />
 
 Front panel is GUI and Ethernet bridge.  
 Build on STM32F407 MCU, LAN8720 as Eth PHY.  
