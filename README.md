@@ -156,3 +156,58 @@ Module [schematic](PCB/PS3604LF/Project%20Outputs%20for%20PS3604LF/PS3604LF.PDF)
 1. Measure series output characteristics of a MOSFET. [Link](/Firmware/Scripts/x-curve.py) to script.
 
 <img src="Pictures/Measured/IRF3710.svg" figcaption="Measured series output characteristics of a MOSFET" style="zoom:67%;" />
+
+------
+
+
+
+## User manual
+
+To enter the settings menu, make sure the output is off by holding NEXT and pressing FUNC.
+```
+Root
+├─ Regulator
+│  ├─ cRange
+│  ├─ Wire
+│  │  ├─ Compensation
+│  │  ├─ Wire
+│  │  └─ Res
+│  ├─ Vmeter
+│  ├─ MicroAmeter
+│  ├─ Ameter
+│  ├─ Info
+│  │  ├─ Serial
+│  │  ├─ CalibrationTime
+│  │  ├─ Vdc
+│  │  ├─ Ths
+│  │  ├─ Tsh
+│  │  └─ Tref
+│  ├─ Acquisition
+│  │  ├─ vIntegration
+│  │  ├─ vFilter
+│  │  ├─ iIntegration
+│  │  └─ iFilter
+│  └─ Save
+├─ DateTime
+│  ├─ Clock
+│  ├─ Time Zone
+│  ├─ DST
+│  ├─ Start
+│  └─ End
+├─ LAN
+│  ├─ IP address
+│  ├─ Subnet mask
+│  ├─ Gateway
+│  └─ MAC
+└─ Bright
+```
+
+### Wire resistance compensation
+
+Short the ends of the wires. Set the **/Regulator/Wire/Compensation** parameter to On. Adjust the **Wire** value so that the result value **Res** is zero.
+
+### Acquisition constant time
+
+For voltage meter set **/Regulator/Acquisition/vIntegration** and  **/Regulator/Acquisition/vFilter**, this parameter is saved in Panel. Result constant time is **0.5 ms * vIntegration * vFilter**.
+
+For current meter set **/Regulator/Acquisition/iIntegration** and  **/Regulator/Acquisition/iFilter**, this parameter is saved in Panel. Result constant time is **0.5 ms * iIntegration * iFilter**.
