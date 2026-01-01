@@ -163,7 +163,15 @@ Module [schematic](PCB/PS3604LF/Project%20Outputs%20for%20PS3604LF/PS3604LF.PDF)
 
 ## User manual
 
-To enter the settings menu, make sure the output is off by holding NEXT and pressing FUNC.
+Key shortcuts:
+
+- FUNC-MODE -- settings menu tree
+- FUNC-NEXT -- next preset (only when the output is turned off)
+- FUNC-UP -- set current measurement High range
+- FUNC-DOWN -- set current measurement Auto range.
+
+Settings menu tree:
+
 ```
 Root
 ├─ Regulator
