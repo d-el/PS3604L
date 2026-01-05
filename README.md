@@ -203,10 +203,17 @@ Root
 │  ├─ Start
 │  └─ End
 ├─ LAN
+│  ├─ DHCP
 │  ├─ IP address
 │  ├─ Subnet mask
 │  ├─ Gateway
-│  └─ MAC
+│  ├─ DNS IP
+│  ├─ Info
+│  │  ├─ IP address
+│  │  ├─ Subnet mask
+│  │  ├─ Gateway
+│  │  ├─ DNS IP
+│  │  └─ MAC address
 └─ Bright
 ```
 
