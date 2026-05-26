@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # API and command line program
-# Version: 0.4
+# Version: 0.5
 
 import argparse
 import enum
@@ -92,15 +92,22 @@ class Regulator:
 
     class Status(enum.Flag):
         normal = 0
-        errorExternalIAdc = 1
-        errorTemperatureSensor = 2
+        limitation = 1
+        cRangeLoOverflow = 2
         overheated = 4
-        lowInputVoltage = 8
-        reverseVoltage = 16
-        notCalibrated = 32
-        limitation = 64
-        externaIAdc = 128
-        cRangeHi = 256
+        calibrationEmpty = 8
+    
+    class Error(enum.Flag):
+        none = 0
+        temperatureSensor = 1
+        temperatureSensorRef = 2
+        temperatureSensorShunt = 4
+        lowInputV1 = 8
+        lowInputV2 = 16
+        lowInputV3 = 32
+        lowInputV4 = 64
+        lowInputVg = 128
+        fan = 256
 
     class Disablecause(enum.Enum):
         none = 0
@@ -154,33 +161,48 @@ class Regulator:
     state_resistance = property(lambda self: self.modbus.read_i32(0x0206) / 10000.0, None)
     state_time = property(lambda self: self.modbus.read_u32(0x0208), None)
     state_capacity = property(lambda self: self.modbus.read_u32(0x020A), None)
-    state_input_voltage = property(lambda self: self.modbus.read_i32(0x020C) / 1000000.0, None)
-    state_temp_heatsink = property(lambda self: self.modbus.read_i16(0x020E) / 10.0, None)
-    state_temp_shunt = property(lambda self: self.modbus.read_i16(0x020F) / 10.0, None)
-    state_temp_ref = property(lambda self: self.modbus.read_i16(0x0210) / 10.0, None)
-    state_status = property(lambda self: self.Status(self.modbus.read_u16(0x0211)), None)
-    state_disablecause = property(lambda self: self.Disablecause(self.modbus.read_u16(0x0212)), None)
-    state_vadc = property(lambda self: self.modbus.read_i32(0x0213), None)
-    state_iadc = property(lambda self: self.modbus.read_i32(0x0215), None)
+    state_iFan = property(lambda self: self.modbus.read_i16(0x020C) / 1000.0, None)
+    state_input_v1 = property(lambda self: self.modbus.read_i16(0x020D) / 10.0, None)
+    state_input_v2 = property(lambda self: self.modbus.read_i16(0x020E) / 10.0, None)
+    state_input_v3 = property(lambda self: self.modbus.read_i16(0x020F) / 10.0, None)
+    state_input_v4 = property(lambda self: self.modbus.read_i16(0x0210) / 10.0, None)
+    state_input_vg = property(lambda self: self.modbus.read_i16(0x0211) / 10.0, None)
+    state_temp_heatsink = property(lambda self: self.modbus.read_i16(0x0212) / 10.0, None)
+    state_temp_shunt = property(lambda self: self.modbus.read_i16(0x0213) / 10.0, None)
+    state_temp_ref = property(lambda self: self.modbus.read_i16(0x0214) / 10.0, None)
+    state_status = property(lambda self: self.Status(self.modbus.read_u16(0x0215)), None)
+    state_error = property(lambda self: self.Status(self.modbus.read_u16(0x0216)), None)
+    state_disablecause = property(lambda self: self.Disablecause(self.modbus.read_u16(0x0217)), None)
+    state_vadc = property(lambda self: self.modbus.read_i32(0x0218), None)
+    state_iadc = property(lambda self: self.modbus.read_i32(0x021A), None)
+
+    debug_u16 = property(lambda self: self.modbus.read_u16(0x0400),
+                             lambda self, val: self.modbus.write_u16(0x0400, val))
 
     class State():
         pass
 
     def getState(self):
-        rr = self.modbus.read_holding_registers(0x0200, count=19) 
+        rr = self.modbus.read_holding_registers(0x0200, count=24) 
         s = self.State()
         s.voltage = self.modbus.client.convert_from_registers([rr.registers[1], rr.registers[0]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
         s.current = self.modbus.client.convert_from_registers([rr.registers[3], rr.registers[2]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
         s.power = self.modbus.client.convert_from_registers([rr.registers[5], rr.registers[4]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
         s.resistance = self.modbus.client.convert_from_registers([rr.registers[7], rr.registers[6]], data_type=self.modbus.client.DATATYPE.INT32) / 10000.0
         s.time = self.modbus.client.convert_from_registers([rr.registers[9], rr.registers[8]], data_type=self.modbus.client.DATATYPE.UINT32) / 1000.0
-        s.capacity = self.modbus.client.convert_from_registers([rr.registers[11], rr.registers[10]], data_type=self.modbus.client.DATATYPE.UINT32)
-        s.input_voltage = self.modbus.client.convert_from_registers([rr.registers[13], rr.registers[12]], data_type=self.modbus.client.DATATYPE.INT32) / 1000000.0
-        s.state_temp_heatsink = self.modbus.client.convert_from_registers([rr.registers[14]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
-        s.state_temp_shunt = self.modbus.client.convert_from_registers([rr.registers[15]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
-        s.state_temp_ref = self.modbus.client.convert_from_registers([rr.registers[16]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
-        s.status = self.Status(self.modbus.client.convert_from_registers([rr.registers[17]], data_type=self.modbus.client.DATATYPE.UINT16))
-        s.disablecause = self.Disablecause(self.modbus.client.convert_from_registers([rr.registers[18]], data_type=self.modbus.client.DATATYPE.UINT16))
+        s.capacity = self.modbus.client.convert_from_registers([rr.registers[11], rr.registers[10]], data_type=self.modbus.client.DATATYPE.UINT32) / 1000.0
+        s.i_fan = self.modbus.client.convert_from_registers([rr.registers[12]], data_type=self.modbus.client.DATATYPE.INT16) / 1000.0
+        s.input_v1 = self.modbus.client.convert_from_registers([rr.registers[13]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.input_v2 = self.modbus.client.convert_from_registers([rr.registers[14]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.input_v3 = self.modbus.client.convert_from_registers([rr.registers[15]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.input_v4 = self.modbus.client.convert_from_registers([rr.registers[16]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.input_vg = self.modbus.client.convert_from_registers([rr.registers[17]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.state_temp_heatsink = self.modbus.client.convert_from_registers([rr.registers[18]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.state_temp_shunt = self.modbus.client.convert_from_registers([rr.registers[19]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.state_temp_ref = self.modbus.client.convert_from_registers([rr.registers[20]], data_type=self.modbus.client.DATATYPE.INT16) / 10.0
+        s.status = self.Status(self.modbus.client.convert_from_registers([rr.registers[21]], data_type=self.modbus.client.DATATYPE.UINT16))
+        s.error = self.Error(self.modbus.client.convert_from_registers([rr.registers[22]], data_type=self.modbus.client.DATATYPE.UINT16))
+        s.disablecause = self.Disablecause(self.modbus.client.convert_from_registers([rr.registers[23]], data_type=self.modbus.client.DATATYPE.UINT16))
         return s
 
     def updateFw(self, filePath):
@@ -303,25 +325,40 @@ if __name__ == '__main__':
             lineUp='\x1B[F'
 
             res_str = f'{s.resistance:10.6f}' if s.resistance > 0 else '       ---'
-            print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:9.6f}W | resistance: {}Ω |'.format(
+            print('| voltage: {:7.3f}V | current: {:9.6f}A | power: {:11.6f}W | resistance: {}Ω |'.format(
                 s.voltage,
                 s.current,
                 s.power,
                 res_str)
                 + ' '*20)
-
-            print('| enable: {:9} | vdc: {:13.1f}V | time: {:10.3f}s | capacity: {:11.3f}Ah |'.format(
+                
+            print('| enable: {:9} | time: {:12.3f}s | capacity: {:7.3f}Ah | {:23} |'.format(
                 ps.regulator.target_enable,
-                s.input_voltage,
                 s.time,
-                s.capacity)
+                s.capacity,
+                ps.regulator.target_mode)
                 + ' '*20, end='\n')
 
-            print(f'| heatsink: {s.state_temp_heatsink:4.1f} °C | shunt: {s.state_temp_shunt:9.1f} °C | ref: {s.state_temp_ref:9.1f} °C | {ps.regulator.target_mode:23} |'
+            print('| v1: {:12.1f}V | v2: {:14.1f}V | v3: {:14.1f}V | v4: {:18.1f}V |'.format(
+                s.input_v1,
+                s.input_v2,
+                s.input_v3,
+                s.input_v4)
                 + ' '*20, end='\n')
 
-            print(f'| {s.disablecause:39} | {s.status:43} |'
-                + ' '*20, end=lineUp + lineUp + lineUp)
+            print('| vg: {:12.1f}V | heatsink: {:6.1f} °C | shunt: {:9.1f} °C | ref: {:15.1f} °C |'.format(
+                s.input_vg,
+                s.state_temp_heatsink,
+                s.state_temp_shunt,
+                s.state_temp_ref)
+                + ' '*20, end='\n')
+
+            print('| iFan {:11.3}A | {:41} | {:23} |'.format(
+                s.i_fan,
+                s.status,
+                s.error
+            )
+            + ' '*20, end=lineUp + lineUp + lineUp + lineUp)
 
             time.sleep(0.1)
 
