@@ -68,10 +68,20 @@ Short term voltage accuracy:
 ## Structure
 
 The device has the following modules: Transformer, Rectifier, Regulator, and Front Panel.
+The Altium PCB projects can also be opened directly in ECAD Forge for quick browser-based inspection.
 
 Overall structure:
 
 <img src="doc/PS3604L.drawio.svg" style="zoom:100%;" />
+
+------
+
+
+
+## Rectifier
+
+The PS3604LRCF rectifier board rectifies and filters the transformer outputs to provide the raw supply rails for the linear regulator.
+Module [schematic](PCB/PS3604LRCF/output/PS3604LRCF.PDF), [ECAD Forge][ecadforge-ps3604lrcf].
 
 ------
 
@@ -89,8 +99,11 @@ Controlled by STM32F337. Used AD4680 SAR 16bit (18bit oversampling mode) for mea
 AD5060 16bit DAC use for current and voltage setpoint.
 Fan speed proportional control for minimize sound noise.
 Module communicate by UART ModBus.
-Module [schematic](PCB/PS3604LR/output/PS3604LR.PDF).
+Module [schematic](PCB/PS3604LR/output/PS3604LR.PDF), [ECAD Forge][ecadforge-ps3604lr].
 <img src="Pictures/regulator_top.jpg" style="zoom:20%;" />
+
+The PS3604LP output protection board is located between the regulator output and the front terminals.
+Module [schematic](PCB/PS3604LP/output/PS3604LP.PDF), [ECAD Forge][ecadforge-ps3604lp].
 
 ### Current and voltage measurement firmware path
 
@@ -144,7 +157,10 @@ Panel structure:
 
 Front panel is GUI and Ethernet bridge.  
 Build on STM32F407 MCU, LAN8720 as Eth PHY.  
-Module [schematic](PCB/PS3604LF/Project%20Outputs%20for%20PS3604LF/PS3604LF.PDF).
+Module [schematic](PCB/PS3604LF/output/PS3604LF.PDF), [ECAD Forge][ecadforge-ps3604lf].
+
+The PS3604LD display board carries the LCD connector and backlight interface used by the front panel.
+Module [schematic](PCB/PS3604LD/output/PS3604LD.PDF), [ECAD Forge][ecadforge-ps3604ld].
 <img src="Pictures/IMG_4574.JPG" style="zoom:20%;" />
 
 ------
@@ -226,3 +242,9 @@ Short the ends of the wires. Set the **/Regulator/Wire/Compensation** parameter 
 For voltage meter set **/Regulator/Acquisition/vIntegration** and  **/Regulator/Acquisition/vFilter**, this parameter is saved in Panel. Result constant time is **0.5 ms * vIntegration * vFilter**.
 
 For current meter set **/Regulator/Acquisition/iIntegration** and  **/Regulator/Acquisition/iFilter**, this parameter is saved in Panel. Result constant time is **0.5 ms * iIntegration * iFilter**.
+
+[ecadforge-ps3604lrcf]: https://ecadforge.app/?url=https%3A%2F%2Fgithub.com%2Fd-el%2FPS3604L%2Ftree%2Fmaster%2FPCB%2FPS3604LRCF
+[ecadforge-ps3604ld]: https://ecadforge.app/?url=https%3A%2F%2Fgithub.com%2Fd-el%2FPS3604L%2Ftree%2Fmaster%2FPCB%2FPS3604LD
+[ecadforge-ps3604lf]: https://ecadforge.app/?url=https%3A%2F%2Fgithub.com%2Fd-el%2FPS3604L%2Ftree%2Fmaster%2FPCB%2FPS3604LF
+[ecadforge-ps3604lp]: https://ecadforge.app/?url=https%3A%2F%2Fgithub.com%2Fd-el%2FPS3604L%2Ftree%2Fmaster%2FPCB%2FPS3604LP
+[ecadforge-ps3604lr]: https://ecadforge.app/?url=https%3A%2F%2Fgithub.com%2Fd-el%2FPS3604L%2Ftree%2Fmaster%2FPCB%2FPS3604LR
